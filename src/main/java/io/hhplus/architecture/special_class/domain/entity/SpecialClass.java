@@ -32,13 +32,8 @@ public class SpecialClass {
     @Column(nullable = false)
     private LocalDateTime classDatetime;
 
-    @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDatetime;
-
-    // 낙관적 락 (Optimistic Locking) 버전 관리
-    @Version
-    private Long version;
 
     @Builder
     public SpecialClass(Long specialClassId, String name, int nowRegisterCnt, int maxRegisterCnt, LocalDateTime classDatetime) {
@@ -47,6 +42,11 @@ public class SpecialClass {
         this.nowRegisterCnt = nowRegisterCnt;
         this.maxRegisterCnt = maxRegisterCnt;
         this.classDatetime = classDatetime;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.createDatetime = LocalDateTime.now();
     }
 
     public void updateRegister() {

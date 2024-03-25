@@ -2,7 +2,9 @@ package io.hhplus.architecture;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
+@EnableAsync
 @SpringBootApplication
 public class ArchitectureApplication {
 
@@ -10,3 +12,4 @@ public class ArchitectureApplication {
         SpringApplication.run(ArchitectureApplication.class, args);
     }
 }
+

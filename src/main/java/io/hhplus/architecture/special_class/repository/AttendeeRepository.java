@@ -5,6 +5,6 @@ import io.hhplus.architecture.special_class.domain.entity.SpecialClass;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AttendeeRepository extends JpaRepository<Attendee, Long> {
-    int countUserIdBySpecialClass(SpecialClass specialClass);
+    int countUserIdBySpecialClass_SpecialClassId(Long specialClassId);
     boolean existsBySpecialClassAndUserId(SpecialClass specialClass, Long userId);
 }

@@ -25,13 +25,17 @@ public class Attendee {
     @Column(nullable = false)
     private Long userId;
 
-    @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDatetime;
 
     public Attendee(SpecialClass specialClass, Long userId) {
         this.specialClass = specialClass;
         this.userId = userId;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.createDatetime = LocalDateTime.now();
     }
 
     @Override

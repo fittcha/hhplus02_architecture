@@ -2,9 +2,12 @@ package io.hhplus.architecture.special_class.service;
 
 import io.hhplus.architecture.special_class.domain.entity.Attendee;
 import io.hhplus.architecture.special_class.domain.entity.SpecialClass;
-import jakarta.persistence.OptimisticLockException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @RequiredArgsConstructor
@@ -18,9 +21,11 @@ public class SpecialClassService implements SpecialClassInterface {
     private static final Long SPC_CLASS_ID = 1L;
 
     @Override
-    public Attendee apply(Long userId) {
-        // 특강 정보 조회
-        SpecialClass specialClass = specialClassReader.findById(SPC_CLASS_ID);
+    @Async
+    @Transactional
+    public CompletableFuture<Attendee> apply(Long userId) {
+        // 특강 정보 조회 (비관적 락 적용)
+        SpecialClass specialClass = specialClassReader.findByIdWithPessimisticLock(SPC_CLASS_ID);
 
         // validate - 이미 동일한 특강을 신청함
         specialClassValidator.isAlreadyApplied(specialClassReader.existBySpecialClassAndUserId(specialClass, userId));
@@ -29,15 +34,15 @@ public class SpecialClassService implements SpecialClassInterface {
         specialClassValidator.isClassFull(specialClass.getNowRegisterCnt(), specialClass.getMaxRegisterCnt());
 
         // 특강 신청
-        return specialClassManager.apply(specialClass, userId);
+        return CompletableFuture.completedFuture(specialClassManager.apply(specialClass, userId));
     }
 
     @Override
-    public boolean check(Long userId) {
+    public String check(Long userId) {
         // 특강 정보 조회
         SpecialClass specialClass = specialClassReader.findById(SPC_CLASS_ID);
 
         // 특강 신청 내역 존재 여부 리턴
-        return specialClassReader.existBySpecialClassAndUserId(specialClass, userId);
+        return specialClassReader.existBySpecialClassAndUserId(specialClass, userId) ? "신청 완료" : "신청 내역이 없습니다.";
     }
 }

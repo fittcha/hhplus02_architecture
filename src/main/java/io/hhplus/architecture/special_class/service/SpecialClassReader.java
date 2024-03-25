@@ -15,7 +15,6 @@ public class SpecialClassReader {
     private final SpecialClassRepository specialClassRepository;
     private final AttendeeRepository attendeeRepository;
 
-
     // 특강 조회
     public SpecialClass findById(Long specialClassId) {
         return specialClassRepository.findById(specialClassId).orElseThrow(NoSuchElementException::new);
@@ -24,5 +23,10 @@ public class SpecialClassReader {
     // 수강 신청 이력 존재 여부
     public boolean existBySpecialClassAndUserId(SpecialClass specialClass, Long userId) {
         return attendeeRepository.existsBySpecialClassAndUserId(specialClass, userId);
+    }
+
+    // 특강 조회 - 비관적락 적용
+    public SpecialClass findByIdWithPessimisticLock(Long specialClassId) {
+        return specialClassRepository.findByIdWithPessimisticLock(specialClassId);
     }
 }

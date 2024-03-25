@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,7 +51,7 @@ class SpecialClassServiceTest {
     @DisplayName("동일한_특강_중복_신청_불가")
     void applyTest_동일한_특강_중복_신청_불가() {
         // when
-        when(specialClassRepository.findById(1L)).thenReturn(Optional.ofNullable(항해_플러스_특강));
+        when(specialClassRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강);
         when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강, 1L)).thenReturn(true);
 
         // then
@@ -74,7 +75,7 @@ class SpecialClassServiceTest {
                 .build();
 
         // when
-        when(specialClassRepository.findById(1L)).thenReturn(Optional.ofNullable(항해_플러스_특강_FULL));
+        when(specialClassRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강_FULL);
         when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강_FULL, 1L)).thenReturn(false);
 
         // then
@@ -86,19 +87,19 @@ class SpecialClassServiceTest {
 
     @Test
     @DisplayName("신청_성공")
-    void applyTest_신청_성공() {
+    void applyTest_신청_성공() throws ExecutionException, InterruptedException {
         // given
         Long userId = 11L;
 
         // when
-        when(specialClassRepository.findById(1L)).thenReturn(Optional.ofNullable(항해_플러스_특강));
+        when(specialClassRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강);
         when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강, 1L)).thenReturn(false);
-        when(attendeeRepository.countUserIdBySpecialClass(항해_플러스_특강)).thenReturn(10);
+        when(attendeeRepository.countUserIdBySpecialClass_SpecialClassId(1L)).thenReturn(10);
         when(attendeeRepository.save(any())).thenReturn(new Attendee(
                 항해_플러스_특강,
                 userId
         ));
-        Attendee attendee = specialClassService.apply(userId);
+        Attendee attendee = specialClassService.apply(userId).get();
 
         // then
         assertNotNull(attendee);
@@ -115,10 +116,10 @@ class SpecialClassServiceTest {
         // when
         when(specialClassRepository.findById(1L)).thenReturn(Optional.ofNullable(항해_플러스_특강));
         when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강, userId)).thenReturn(true);
-        boolean applicantYn = specialClassService.check(userId);
+        String applicantYn = specialClassService.check(userId);
 
         // then
-        assertTrue(applicantYn);
+        assertThat(applicantYn.equals("신청 완료"));
     }
 
     @Test
@@ -130,9 +131,9 @@ class SpecialClassServiceTest {
         // when
         when(specialClassRepository.findById(1L)).thenReturn(Optional.ofNullable(항해_플러스_특강));
         when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강, userId)).thenReturn(false);
-        boolean applicantYn = specialClassService.check(userId);
+        String applicantYn = specialClassService.check(userId);
 
         // then
-        assertFalse(applicantYn);
+        assertThat(applicantYn.equals("신청 완료"));
     }
 }
