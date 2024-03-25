@@ -1,7 +1,8 @@
-package io.hhplus.architecture.specialClass.service;
+package io.hhplus.architecture.special_class.service;
 
-import io.hhplus.architecture.specialClass.domain.entity.Applicant;
-import io.hhplus.architecture.specialClass.domain.entity.SpecialClass;
+import io.hhplus.architecture.special_class.domain.entity.Attendee;
+import io.hhplus.architecture.special_class.domain.entity.SpecialClass;
+import jakarta.persistence.OptimisticLockException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class SpecialClassService implements SpecialClassInterface {
     private static final Long SPC_CLASS_ID = 1L;
 
     @Override
-    public Applicant apply(Long userId) {
+    public Attendee apply(Long userId) {
         // 특강 정보 조회
         SpecialClass specialClass = specialClassReader.findById(SPC_CLASS_ID);
 
@@ -25,8 +26,7 @@ public class SpecialClassService implements SpecialClassInterface {
         specialClassValidator.isAlreadyApplied(specialClassReader.existBySpecialClassAndUserId(specialClass, userId));
 
         // validate - 특강 정원 초과
-        int nowApplicantCnt = specialClassReader.countUserByClass(specialClass);
-        specialClassValidator.isClassFull(nowApplicantCnt, specialClass.getMaxApplicantCnt());
+        specialClassValidator.isClassFull(specialClass.getNowRegisterCnt(), specialClass.getMaxRegisterCnt());
 
         // 특강 신청
         return specialClassManager.apply(specialClass, userId);

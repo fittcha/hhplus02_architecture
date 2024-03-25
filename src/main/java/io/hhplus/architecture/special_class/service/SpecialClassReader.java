@@ -1,8 +1,8 @@
-package io.hhplus.architecture.specialClass.service;
+package io.hhplus.architecture.special_class.service;
 
-import io.hhplus.architecture.specialClass.domain.entity.SpecialClass;
-import io.hhplus.architecture.specialClass.repository.ApplicantRepository;
-import io.hhplus.architecture.specialClass.repository.SpecialClassRepository;
+import io.hhplus.architecture.special_class.domain.entity.SpecialClass;
+import io.hhplus.architecture.special_class.repository.AttendeeRepository;
+import io.hhplus.architecture.special_class.repository.SpecialClassRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 public class SpecialClassReader {
 
     private final SpecialClassRepository specialClassRepository;
-    private final ApplicantRepository applicantRepository;
+    private final AttendeeRepository attendeeRepository;
 
 
     // 특강 조회
@@ -21,13 +21,8 @@ public class SpecialClassReader {
         return specialClassRepository.findById(specialClassId).orElseThrow(NoSuchElementException::new);
     }
 
-    // 수강 인원 조회
-    public int countUserByClass(SpecialClass specialClass) {
-        return applicantRepository.countUserIdBySpecialClass(specialClass);
-    }
-
     // 수강 신청 이력 존재 여부
     public boolean existBySpecialClassAndUserId(SpecialClass specialClass, Long userId) {
-        return applicantRepository.existsBySpecialClassAndUserId(specialClass, userId);
+        return attendeeRepository.existsBySpecialClassAndUserId(specialClass, userId);
     }
 }
