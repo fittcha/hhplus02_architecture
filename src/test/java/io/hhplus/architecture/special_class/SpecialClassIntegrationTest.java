@@ -23,7 +23,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest()
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 class SpecialClassIntegrationTest {
 

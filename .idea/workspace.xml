@@ -4,25 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/ArchitectureApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/ArchitectureApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/SpecialClassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/SpecialClassController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/domain/entity/Attendee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/domain/entity/Attendee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/domain/entity/SpecialClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/domain/entity/SpecialClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/repository/AttendeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/repository/AttendeeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/repository/SpecialClassRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/repository/SpecialClassRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/special_class/SpecialClassIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/special_class/SpecialClassIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/special_class/service/SpecialClassServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/special_class/service/SpecialClassServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +117,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false",
     "spring.configuration.checksum": "38c9bea836d07a6f333f61eaeb986098",
     "vue.rearranger.settings.migration": "true"
@@ -164,7 +151,7 @@
       <recent name="io.hhplus.architecture" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SpecialClassIntegrationTest.applyTest_5명이_동시에_특강_신청">
+  <component name="RunManager" selected="Spring Boot.ArchitectureApplication">
     <configuration name="SpecialClassIntegrationTest.applyTest_5명이_동시에_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hhplus02_architecture.test" />
       <extension name="coverage">
@@ -245,6 +232,7 @@
       </method>
     </configuration>
     <configuration name="ArchitectureApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ENABLE_JMX_AGENT" value="false" />
       <module name="hhplus02_architecture.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="io.hhplus.architecture.ArchitectureApplication" />
       <method v="2">
@@ -276,9 +264,17 @@
       <workItem from="1711325439892" duration="11466000" />
       <workItem from="1711367721050" duration="653000" />
       <workItem from="1711368390200" duration="2610000" />
-      <workItem from="1711371087657" duration="6615000" />
+      <workItem from="1711371087657" duration="8681000" />
+      <workItem from="1711381848298" duration="1206000" />
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결">
+      <created>1711377983625</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1711377983625</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +293,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: 특강 신청, 특강 신청 조회 기능 구현 + 단위테스트 작성 + h2 database setting" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: 특강 신청, 특강 신청 조회 기능 구현 + 단위테스트 작성 + h2 database setting" />
+    <MESSAGE value="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
