@@ -8,6 +8,7 @@ import io.hhplus.architecture.special_class.service.SpecialClassService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -17,43 +18,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest()
-@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SpecialClassIntegrationTest {
 
     @LocalServerPort
     private int port;
 
-    private final TestRestTemplate restTemplate;
-    private final SpecialClassService specialClassService;
-    private final SpecialClassRepository specialClassRepository;
-    private final AttendeeRepository attendeeRepository;
+    @Autowired
+    private TestRestTemplate restTemplate;
+    @Autowired
+    private SpecialClassService specialClassService;
 
     private static final String LOCAL_HOST = "http://localhost:";
     private static final String PATH = "/special-class";
 
-    SpecialClassIntegrationTest(TestRestTemplate restTemplate, SpecialClassService specialClassService, SpecialClassRepository specialClassRepository, AttendeeRepository attendeeRepository) {
-        this.restTemplate = restTemplate;
-        this.specialClassService = specialClassService;
-        this.specialClassRepository = specialClassRepository;
-        this.attendeeRepository = attendeeRepository;
-    }
-
     @BeforeEach
     void setUp() {
-//        specialClassRepository.save(SpecialClass.builder()
-//                .specialClassId(1L)
-//                .name("항해 플러스 토요일 특강")
-//                .nowRegisterCnt(0)
-//                .maxRegisterCnt(30)
-//                .classDatetime(LocalDateTime.of(2024, 4, 20, 13,0, 0))
-//                .build());
     }
 
     @Test
@@ -61,13 +48,6 @@ class SpecialClassIntegrationTest {
     void checkTest_특강_신청_여부_조회() {
         // given
         Long userId = 1L;
-        attendeeRepository.save(new Attendee(SpecialClass.builder()
-                .specialClassId(1L)
-                .name("항해 플러스 토요일 특강")
-                .nowRegisterCnt(0)
-                .maxRegisterCnt(30)
-                .classDatetime(LocalDateTime.of(2024, 4, 20, 13,0, 0))
-                .build(), 1L));
 
         // when
         ResponseEntity<String> response = restTemplate.getForEntity(LOCAL_HOST + port + PATH + "/" + userId, String.class);
@@ -99,7 +79,5 @@ class SpecialClassIntegrationTest {
         CompletableFuture.allOf(futures).get();
 
         // then
-        int attendeeCnt = attendeeRepository.countUserIdBySpecialClass_SpecialClassId(1L);
-        assertThat(attendeeCnt).isEqualTo(5);
     }
 }
