@@ -1,14 +1,14 @@
-package io.hhplus.architecture.classes.special_class.domain;
+package io.hhplus.architecture.domain.lecture;
 
 import io.hhplus.architecture.MessageCommInterface;
 import lombok.Getter;
 
-public class SpecialClassCustomException extends RuntimeException {
+public class LectureCustomException extends RuntimeException {
     @Getter
     private final String errorCode;
     private final String message;
 
-    public SpecialClassCustomException(MessageCommInterface messageCommInterface) {
+    public LectureCustomException(MessageCommInterface messageCommInterface) {
         super(messageCommInterface.getMessage());
         this.errorCode = messageCommInterface.getCode();
         this.message = messageCommInterface.getMessage();
