@@ -1,7 +1,7 @@
 package io.hhplus.architecture.classes.special_class.service;
 
 import io.hhplus.architecture.classes.service.ClassInterface;
-import io.hhplus.architecture.classes.special_class.domain.entity.Attendee;
+import io.hhplus.architecture.classes.special_class.domain.entity.ClassRegistration;
 import io.hhplus.architecture.classes.special_class.domain.entity.SpecialClass;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class SpecialClassService implements ClassInterface {
 
-    private final SpecialClassManager specialClassManager;
+    private final SpecialClassRegister specialClassRegister;
     private final SpecialClassReader specialClassReader;
     private final SpecialClassValidator specialClassValidator;
 
@@ -20,7 +20,7 @@ public class SpecialClassService implements ClassInterface {
 
     @Override
     @Transactional
-    public Attendee apply(Long userId) {
+    public ClassRegistration regist(Long userId) {
         // 특강 정보 조회 (비관적 락 적용)
         SpecialClass specialClass = specialClassReader.findByIdWithPessimisticLock(SPC_CLASS_ID);
 
@@ -31,7 +31,7 @@ public class SpecialClassService implements ClassInterface {
         specialClassValidator.isClassFull(specialClass.getNowRegisterCnt(), specialClass.getMaxRegisterCnt());
 
         // 특강 신청
-        return specialClassManager.apply(specialClass, userId);
+        return specialClassRegister.regist(specialClass, userId);
     }
 
     @Override

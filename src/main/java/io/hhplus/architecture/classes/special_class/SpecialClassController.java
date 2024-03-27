@@ -1,6 +1,6 @@
 package io.hhplus.architecture.classes.special_class;
 
-import io.hhplus.architecture.classes.special_class.domain.entity.Attendee;
+import io.hhplus.architecture.classes.special_class.domain.entity.ClassRegistration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +17,8 @@ public class SpecialClassController {
 
     // 특강 신청
     @PostMapping("/{userId}")
-    public Attendee apply(@PathVariable Long userId) {
-        return service.apply(userId);
+    public ClassRegistration regist(@PathVariable Long userId) {
+        return service.regist(userId);
     }
 
     // 특강 신청 여부 조회

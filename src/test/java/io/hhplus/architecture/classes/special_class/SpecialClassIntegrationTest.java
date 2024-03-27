@@ -62,7 +62,7 @@ class SpecialClassIntegrationTest {
         // when - 따닥 특강 신청
         for (int i = 0; i < 2; i++) {
             try {
-                specialClassService.apply(userId); // userId 동일
+                specialClassService.regist(userId); // userId 동일
             } catch (Exception e) {
                 // then
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
@@ -79,7 +79,7 @@ class SpecialClassIntegrationTest {
         // when - 순차적으로 특강 신청
         for (int i = 0; i < 5; i++) {
             try {
-                specialClassService.apply(userId + i); // userId 1씩 증가
+                specialClassService.regist(userId + i); // userId 1씩 증가
             } catch (Exception e) {
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
             }
@@ -100,7 +100,7 @@ class SpecialClassIntegrationTest {
             service.submit(() -> {
                 try {
                     // 특강 신청
-                    specialClassService.apply(id);
+                    specialClassService.regist(id);
                 } catch (Exception e) {
                     System.out.println("Error during application for user " + id + ": " + e.getMessage());
                 }
@@ -124,7 +124,7 @@ class SpecialClassIntegrationTest {
         // when - 순차적으로 특강 신청
         for (int i = 0; i < 31; i++) {
             try {
-                specialClassService.apply(userId + i); // userId 1씩 증가
+                specialClassService.regist(userId + i); // userId 1씩 증가
             } catch (Exception e) {
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
             }
@@ -144,7 +144,7 @@ class SpecialClassIntegrationTest {
         CompletableFuture<?>[] futures = IntStream.range(0, 50)
                 .mapToObj(i -> CompletableFuture.runAsync(() -> {
                     try {
-                        specialClassService.apply(userId + i); // userId 1씩 증가
+                        specialClassService.regist(userId + i); // userId 1씩 증가
                     } catch (Exception e) {
                         System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
                     }

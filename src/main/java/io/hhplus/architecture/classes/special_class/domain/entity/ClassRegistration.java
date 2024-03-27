@@ -10,12 +10,12 @@ import java.util.Objects;
 @Entity
 @Getter
 @RequiredArgsConstructor
-@Table(name = "attendee")
-public class Attendee {
+@Table(name = "class_registration")
+public class ClassRegistration {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long attendeeId;
+    private Long classRegistrationId;
 
     @ManyToOne
     @JoinColumn(name = "special_class_id", nullable = false)
@@ -27,7 +27,7 @@ public class Attendee {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createDatetime;
 
-    public Attendee(SpecialClass specialClass, Long userId) {
+    public ClassRegistration(SpecialClass specialClass, Long userId) {
         this.specialClass = specialClass;
         this.userId = userId;
     }
@@ -41,12 +41,12 @@ public class Attendee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Attendee attendee = (Attendee) o;
-        return attendeeId.equals(attendee.attendeeId);
+        ClassRegistration classRegistration = (ClassRegistration) o;
+        return classRegistrationId.equals(classRegistration.classRegistrationId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(attendeeId);
+        return Objects.hash(classRegistrationId);
     }
 }

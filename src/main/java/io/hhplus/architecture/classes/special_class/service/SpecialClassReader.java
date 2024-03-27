@@ -1,6 +1,6 @@
 package io.hhplus.architecture.classes.special_class.service;
 
-import io.hhplus.architecture.classes.special_class.repository.AttendeeRepository;
+import io.hhplus.architecture.classes.special_class.repository.ClassRegistrationRepository;
 import io.hhplus.architecture.classes.special_class.repository.SpecialClassRepository;
 import io.hhplus.architecture.classes.special_class.domain.entity.SpecialClass;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 public class SpecialClassReader {
 
     private final SpecialClassRepository specialClassRepository;
-    private final AttendeeRepository attendeeRepository;
+    private final ClassRegistrationRepository classRegistrationRepository;
 
     // 특강 조회
     public SpecialClass findById(Long specialClassId) {
@@ -22,7 +22,7 @@ public class SpecialClassReader {
 
     // 수강 신청 이력 존재 여부
     public boolean existBySpecialClassAndUserId(SpecialClass specialClass, Long userId) {
-        return attendeeRepository.existsBySpecialClassAndUserId(specialClass, userId);
+        return classRegistrationRepository.existsBySpecialClassAndUserId(specialClass, userId);
     }
 
     // 특강 조회 - 수강 신청용 (비관적락 적용)

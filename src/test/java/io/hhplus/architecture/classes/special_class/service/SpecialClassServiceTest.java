@@ -1,7 +1,7 @@
 package io.hhplus.architecture.classes.special_class.service;
 
-import io.hhplus.architecture.classes.special_class.domain.entity.Attendee;
-import io.hhplus.architecture.classes.special_class.repository.AttendeeRepository;
+import io.hhplus.architecture.classes.special_class.domain.entity.ClassRegistration;
+import io.hhplus.architecture.classes.special_class.repository.ClassRegistrationRepository;
 import io.hhplus.architecture.classes.special_class.repository.SpecialClassRepository;
 import io.hhplus.architecture.classes.special_class.domain.SpecialClassCustomException;
 import io.hhplus.architecture.classes.special_class.domain.entity.SpecialClass;
@@ -22,7 +22,7 @@ class SpecialClassServiceTest {
 
     private SpecialClassService specialClassService;
     private SpecialClassRepository specialClassRepository;
-    private AttendeeRepository attendeeRepository;
+    private ClassRegistrationRepository classRegistrationRepository;
 
     private SpecialClass 항해_플러스_특강;
 
@@ -30,10 +30,10 @@ class SpecialClassServiceTest {
     void setUp() {
         // mocking
         specialClassRepository = Mockito.mock(SpecialClassRepository.class);
-        attendeeRepository = Mockito.mock(AttendeeRepository.class);
+        classRegistrationRepository = Mockito.mock(ClassRegistrationRepository.class);
         specialClassService = new SpecialClassService(
-                new SpecialClassManager(specialClassRepository, attendeeRepository),
-                new SpecialClassReader(specialClassRepository, attendeeRepository),
+                new SpecialClassRegister(specialClassRepository, classRegistrationRepository),
+                new SpecialClassReader(specialClassRepository, classRegistrationRepository),
                 new SpecialClassValidator()
         );
 
@@ -52,11 +52,11 @@ class SpecialClassServiceTest {
     void applyTest_동일한_특강_중복_신청_불가() {
         // when
         when(specialClassRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강);
-        when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강, 1L)).thenReturn(true);
+        when(classRegistrationRepository.existsBySpecialClassAndUserId(항해_플러스_특강, 1L)).thenReturn(true);
 
         // then
         SpecialClassCustomException expected = assertThrows(SpecialClassCustomException.class, () -> {
-            specialClassService.apply(1L);
+            specialClassService.regist(1L);
         });
         assertThat(expected.getMessage()).isEqualTo("이미 신청된 특강입니다.");
     }
@@ -76,11 +76,11 @@ class SpecialClassServiceTest {
 
         // when
         when(specialClassRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강_FULL);
-        when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강_FULL, 1L)).thenReturn(false);
+        when(classRegistrationRepository.existsBySpecialClassAndUserId(항해_플러스_특강_FULL, 1L)).thenReturn(false);
 
         // then
         SpecialClassCustomException expected = assertThrows(SpecialClassCustomException.class, () -> {
-            specialClassService.apply(userId);
+            specialClassService.regist(userId);
         });
         assertThat(expected.getMessage()).isEqualTo("정원이 초과되어 수강 신청에 실패했습니다.");
     }
@@ -93,18 +93,18 @@ class SpecialClassServiceTest {
 
         // when
         when(specialClassRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강);
-        when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강, 1L)).thenReturn(false);
-        when(attendeeRepository.countUserIdBySpecialClass_SpecialClassId(1L)).thenReturn(10);
-        when(attendeeRepository.save(any())).thenReturn(new Attendee(
+        when(classRegistrationRepository.existsBySpecialClassAndUserId(항해_플러스_특강, 1L)).thenReturn(false);
+        when(classRegistrationRepository.countUserIdBySpecialClass_SpecialClassId(1L)).thenReturn(10);
+        when(classRegistrationRepository.save(any())).thenReturn(new ClassRegistration(
                 항해_플러스_특강,
                 userId
         ));
-        Attendee attendee = specialClassService.apply(userId);
+        ClassRegistration classRegistration = specialClassService.regist(userId);
 
         // then
-        assertNotNull(attendee);
-        assertEquals(attendee.getSpecialClass().getName(), "항해 플러스 토요일 특강");
-        assertEquals(attendee.getUserId(), 11L);
+        assertNotNull(classRegistration);
+        assertEquals(classRegistration.getSpecialClass().getName(), "항해 플러스 토요일 특강");
+        assertEquals(classRegistration.getUserId(), 11L);
     }
 
     @Test
@@ -115,7 +115,7 @@ class SpecialClassServiceTest {
 
         // when
         when(specialClassRepository.findById(1L)).thenReturn(Optional.ofNullable(항해_플러스_특강));
-        when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강, userId)).thenReturn(true);
+        when(classRegistrationRepository.existsBySpecialClassAndUserId(항해_플러스_특강, userId)).thenReturn(true);
         String applicantYn = specialClassService.check(userId);
 
         // then
@@ -130,7 +130,7 @@ class SpecialClassServiceTest {
 
         // when
         when(specialClassRepository.findById(1L)).thenReturn(Optional.ofNullable(항해_플러스_특강));
-        when(attendeeRepository.existsBySpecialClassAndUserId(항해_플러스_특강, userId)).thenReturn(false);
+        when(classRegistrationRepository.existsBySpecialClassAndUserId(항해_플러스_특강, userId)).thenReturn(false);
         String applicantYn = specialClassService.check(userId);
 
         // then
