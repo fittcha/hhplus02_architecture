@@ -1,9 +1,9 @@
-package io.hhplus.architecture.special_class.service;
+package io.hhplus.architecture.classes.special_class.service;
 
-import io.hhplus.architecture.special_class.domain.entity.Attendee;
-import io.hhplus.architecture.special_class.domain.entity.SpecialClass;
-import io.hhplus.architecture.special_class.repository.AttendeeRepository;
-import io.hhplus.architecture.special_class.repository.SpecialClassRepository;
+import io.hhplus.architecture.classes.special_class.repository.AttendeeRepository;
+import io.hhplus.architecture.classes.special_class.repository.SpecialClassRepository;
+import io.hhplus.architecture.classes.special_class.domain.entity.Attendee;
+import io.hhplus.architecture.classes.special_class.domain.entity.SpecialClass;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
-package io.hhplus.architecture.special_class.repository;
+package io.hhplus.architecture.classes.special_class.repository;
 
-import io.hhplus.architecture.special_class.domain.entity.SpecialClass;
+import io.hhplus.architecture.classes.special_class.domain.entity.SpecialClass;
 import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;

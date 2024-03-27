@@ -1,12 +1,10 @@
-package io.hhplus.architecture.special_class.domain.entity;
+package io.hhplus.architecture.classes.special_class.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -51,6 +49,10 @@ public class SpecialClass {
 
     public void updateRegister() {
         this.nowRegisterCnt = this.nowRegisterCnt + 1;
+    }
+
+    public void initRegister() {
+        this.nowRegisterCnt = 0;
     }
 
     @Override

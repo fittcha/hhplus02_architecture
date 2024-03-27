@@ -1,4 +1,4 @@
-package io.hhplus.architecture.special_class.domain;
+package io.hhplus.architecture.classes.special_class.domain;
 
 import io.hhplus.architecture.MessageCommInterface;
 import lombok.Getter;

@@ -1,9 +1,8 @@
-package io.hhplus.architecture.special_class.domain.entity;
+package io.hhplus.architecture.classes.special_class.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -11,12 +10,12 @@ import java.util.Objects;
 @Entity
 @Getter
 @RequiredArgsConstructor
-@Table(name = "applicant")
+@Table(name = "attendee")
 public class Attendee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long applicantId;
+    private Long attendeeId;
 
     @ManyToOne
     @JoinColumn(name = "special_class_id", nullable = false)
@@ -43,11 +42,11 @@ public class Attendee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Attendee attendee = (Attendee) o;
-        return applicantId.equals(attendee.applicantId);
+        return attendeeId.equals(attendee.attendeeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(applicantId);
+        return Objects.hash(attendeeId);
     }
 }

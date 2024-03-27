@@ -4,16 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: h2 db lock 의심">
-      <change afterPath="$PROJECT_DIR$/docker/db/init/init_data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: 참석자 엔티티 네이밍 변경">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/service/ClassInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/service/TestDataHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/special_class/SpecialClassIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/special_class/SpecialClassIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/db/init/init_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/init/init_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/SpecialClassController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/SpecialClassController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/domain/SpecialClassCustomException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/domain/SpecialClassCustomException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/domain/SpecialClassExceptionEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/domain/SpecialClassExceptionEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/domain/entity/Attendee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/domain/entity/Attendee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/domain/entity/SpecialClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/domain/entity/SpecialClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/repository/AttendeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/repository/AttendeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/repository/SpecialClassRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/repository/SpecialClassRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/service/SpecialClassManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/service/SpecialClassReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/service/SpecialClassService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/special_class/service/SpecialClassValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/classes/special_class/service/SpecialClassValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/special_class/SpecialClassIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/classes/special_class/SpecialClassIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/special_class/service/SpecialClassServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/classes/special_class/service/SpecialClassServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,8 +78,8 @@
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -91,48 +101,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build 02_architecture.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SpecialClassIntegrationTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SpecialClassIntegrationTest.checkTest_특강_신청_여부_조회.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SpecialClassServiceTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SpecialClassServiceTest.applyTest_동일한_특강_중복_신청_불가.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SpecialClassServiceTest.applyTest_신청자가_30명_이상이면_신청_불가.executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/chacha/development/hhplus/hhplus02_architecture&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;38c9bea836d07a6f333f61eaeb986098&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build 02_architecture.executor": "Run",
+    "Gradle.SpecialClassIntegrationTest (1).executor": "Run",
+    "Gradle.SpecialClassIntegrationTest.checkTest_특강_신청_여부_조회.executor": "Run",
+    "Gradle.SpecialClassServiceTest (1).executor": "Run",
+    "Gradle.SpecialClassServiceTest.applyTest_동일한_특강_중복_신청_불가.executor": "Run",
+    "Gradle.SpecialClassServiceTest.applyTest_신청자가_30명_이상이면_신청_불가.executor": "Run",
+    "JUnit.SpecialClassIntegrationTest.applyTest_10명이_동시에_특강_신청.executor": "Run",
+    "JUnit.SpecialClassIntegrationTest.applyTest_31명이_순차적으로_특강_신청하면_31번째_유저는_실패.executor": "Run",
+    "JUnit.SpecialClassIntegrationTest.applyTest_50명이_동시에_특강_신청.executor": "Run",
+    "JUnit.SpecialClassIntegrationTest.applyTest_5명이_동시에_특강_신청 (1).executor": "Run",
+    "JUnit.SpecialClassIntegrationTest.applyTest_5명이_순차적으로_특강_신청.executor": "Run",
+    "JUnit.SpecialClassIntegrationTest.applyTest_동일한_유저가_따닥_특강_신청.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ArchitectureApplication.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/chacha/development/hhplus/hhplus02_architecture",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "show.migrate.to.gradle.popup": "false",
+    "spring.configuration.checksum": "38c9bea836d07a6f333f61eaeb986098",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;h2&quot;,
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "h2",
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.hhplus.architecture.special_class.repository" />
@@ -159,49 +176,82 @@
       <recent name="io.hhplus.architecture" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SpecialClassIntegrationTest.applyTest_5명이_동시에_특강_신청">
-    <configuration name="SpecialClassIntegrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SpecialClassIntegrationTest.applyTest_10명이_동시에_특강_신청">
+    <configuration name="SpecialClassIntegrationTest.applyTest_10명이_동시에_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hhplus02_architecture.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.hhplus.architecture.special_class.*" />
+          <option name="PATTERN" value="io.hhplus.architecture.classes.special_class.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.hhplus.architecture.special_class" />
-      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.special_class.SpecialClassIntegrationTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SpecialClassIntegrationTest.applyTest_5명이_동시에_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hhplus02_architecture.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.hhplus.architecture.special_class.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io.hhplus.architecture.special_class" />
-      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.special_class.SpecialClassIntegrationTest" />
-      <option name="METHOD_NAME" value="applyTest_5명이_동시에_특강_신청" />
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.classes.special_class" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.classes.special_class.SpecialClassIntegrationTest" />
+      <option name="METHOD_NAME" value="applyTest_10명이_동시에_특강_신청" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SpecialClassIntegrationTest.checkTest_특강_신청_여부_조회" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SpecialClassIntegrationTest.applyTest_31명이_순차적으로_특강_신청하면_31번째_유저는_실패" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hhplus02_architecture.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.hhplus.architecture.special_class.*" />
+          <option name="PATTERN" value="io.hhplus.architecture.classes.special_class.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.hhplus.architecture.special_class" />
-      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.special_class.SpecialClassIntegrationTest" />
-      <option name="METHOD_NAME" value="checkTest_특강_신청_여부_조회" />
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.classes.special_class" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.classes.special_class.SpecialClassIntegrationTest" />
+      <option name="METHOD_NAME" value="applyTest_31명이_순차적으로_특강_신청하면_31번째_유저는_실패" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpecialClassIntegrationTest.applyTest_50명이_동시에_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hhplus02_architecture.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.hhplus.architecture.classes.special_class.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.classes.special_class" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.classes.special_class.SpecialClassIntegrationTest" />
+      <option name="METHOD_NAME" value="applyTest_50명이_동시에_특강_신청" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpecialClassIntegrationTest.applyTest_5명이_순차적으로_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hhplus02_architecture.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.hhplus.architecture.classes.special_class.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.classes.special_class" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.classes.special_class.SpecialClassIntegrationTest" />
+      <option name="METHOD_NAME" value="applyTest_5명이_순차적으로_특강_신청" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpecialClassIntegrationTest.applyTest_동일한_유저가_따닥_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hhplus02_architecture.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.hhplus.architecture.classes.special_class.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.classes.special_class" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.classes.special_class.SpecialClassIntegrationTest" />
+      <option name="METHOD_NAME" value="applyTest_동일한_유저가_따닥_특강_신청" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -227,35 +277,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="envFilePath" value="" />
-          <option name="sourceFilePath" value="docker/docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker.mysql: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="mysql" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker/docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SpecialClassIntegrationTest.applyTest_5명이_동시에_특강_신청" />
-        <item itemvalue="JUnit.SpecialClassIntegrationTest.checkTest_특강_신청_여부_조회" />
-        <item itemvalue="JUnit.SpecialClassIntegrationTest" />
-        <item itemvalue="Docker.docker.mysql: Compose Deployment" />
-        <item itemvalue="Docker.docker: Compose Deployment" />
+        <item itemvalue="JUnit.SpecialClassIntegrationTest.applyTest_10명이_동시에_특강_신청" />
+        <item itemvalue="JUnit.SpecialClassIntegrationTest.applyTest_50명이_동시에_특강_신청" />
+        <item itemvalue="JUnit.SpecialClassIntegrationTest.applyTest_동일한_유저가_따닥_특강_신청" />
+        <item itemvalue="JUnit.SpecialClassIntegrationTest.applyTest_31명이_순차적으로_특강_신청하면_31번째_유저는_실패" />
+        <item itemvalue="JUnit.SpecialClassIntegrationTest.applyTest_5명이_순차적으로_특강_신청" />
       </list>
     </recent_temporary>
   </component>
@@ -280,6 +308,7 @@
       <workItem from="1711451191432" duration="718000" />
       <workItem from="1711451924326" duration="5562000" />
       <workItem from="1711457995745" duration="1883000" />
+      <workItem from="1711499888366" duration="10714000" />
     </task>
     <task id="LOCAL-00002" summary="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결">
       <created>1711377983625</created>

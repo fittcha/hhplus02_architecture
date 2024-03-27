@@ -1,8 +1,8 @@
-package io.hhplus.architecture.special_class.service;
+package io.hhplus.architecture.classes.special_class.service;
 
-import io.hhplus.architecture.special_class.domain.entity.SpecialClass;
-import io.hhplus.architecture.special_class.repository.AttendeeRepository;
-import io.hhplus.architecture.special_class.repository.SpecialClassRepository;
+import io.hhplus.architecture.classes.special_class.repository.AttendeeRepository;
+import io.hhplus.architecture.classes.special_class.repository.SpecialClassRepository;
+import io.hhplus.architecture.classes.special_class.domain.entity.SpecialClass;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -25,7 +25,7 @@ public class SpecialClassReader {
         return attendeeRepository.existsBySpecialClassAndUserId(specialClass, userId);
     }
 
-    // 특강 조회 - 비관적락 적용
+    // 특강 조회 - 수강 신청용 (비관적락 적용)
     public SpecialClass findByIdWithPessimisticLock(Long specialClassId) {
         return specialClassRepository.findByIdWithPessimisticLock(specialClassId);
     }

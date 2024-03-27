@@ -1,10 +1,10 @@
-package io.hhplus.architecture.special_class.service;
+package io.hhplus.architecture.classes.special_class.service;
 
-import io.hhplus.architecture.special_class.domain.SpecialClassCustomException;
-import io.hhplus.architecture.special_class.domain.entity.Attendee;
-import io.hhplus.architecture.special_class.domain.entity.SpecialClass;
-import io.hhplus.architecture.special_class.repository.AttendeeRepository;
-import io.hhplus.architecture.special_class.repository.SpecialClassRepository;
+import io.hhplus.architecture.classes.special_class.domain.entity.Attendee;
+import io.hhplus.architecture.classes.special_class.repository.AttendeeRepository;
+import io.hhplus.architecture.classes.special_class.repository.SpecialClassRepository;
+import io.hhplus.architecture.classes.special_class.domain.SpecialClassCustomException;
+import io.hhplus.architecture.classes.special_class.domain.entity.SpecialClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -99,7 +99,7 @@ class SpecialClassServiceTest {
                 항해_플러스_특강,
                 userId
         ));
-        Attendee attendee = specialClassService.apply(userId).get();
+        Attendee attendee = specialClassService.apply(userId);
 
         // then
         assertNotNull(attendee);

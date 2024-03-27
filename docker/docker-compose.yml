@@ -4,7 +4,7 @@ services:
   # 서비스 명
   mysql:
     # 사용할 이미지
-    image: mysql:8.0
+    image: mysql:latest
     # 컨테이너 실행 시 재시작
     restart: always
     # 컨테이너명 설정
