@@ -25,7 +25,7 @@
 - 2024/03/27 수
 
 ### ERD 명세
-![img.png](img.png)
+![erd1.png](erd1.png)
 
 ### 기술 스택 결정
 
