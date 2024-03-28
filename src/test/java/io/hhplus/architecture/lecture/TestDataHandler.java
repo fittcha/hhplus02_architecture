@@ -1,4 +1,4 @@
-package io.hhplus.architecture.classes.lecture;
+package io.hhplus.architecture.lecture;
 
 import io.hhplus.architecture.domain.lecture.entity.Lecture;
 import io.hhplus.architecture.domain.lecture.repository.LectureRegistrationRepository;

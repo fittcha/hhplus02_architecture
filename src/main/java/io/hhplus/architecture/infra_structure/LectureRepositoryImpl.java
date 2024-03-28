@@ -5,7 +5,9 @@ import io.hhplus.architecture.domain.lecture.repository.LectureJpaRepository;
 import io.hhplus.architecture.domain.lecture.repository.LectureRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Repository
 public class LectureRepositoryImpl implements LectureRepository {
@@ -24,5 +26,20 @@ public class LectureRepositoryImpl implements LectureRepository {
     @Override
     public Lecture findById(Long lectureId) {
         return jpaRepository.findById(lectureId).orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
+    public Lecture save(Lecture lecture) {
+        return jpaRepository.save(lecture);
+    }
+
+    @Override
+    public List<Lecture> findAll() {
+        return jpaRepository.findAll();
+    }
+
+    @Override
+    public Optional<Lecture> findByName(String name) {
+        return jpaRepository.findByName(name);
     }
 }

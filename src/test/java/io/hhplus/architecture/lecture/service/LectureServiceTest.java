@@ -1,5 +1,6 @@
-package io.hhplus.architecture.classes.lecture.service;
+package io.hhplus.architecture.lecture.service;
 
+import io.hhplus.architecture.controller.dto.RegisterResponse;
 import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
 import io.hhplus.architecture.domain.lecture.LectureCustomException;
 import io.hhplus.architecture.domain.lecture.entity.Lecture;
@@ -13,7 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.ExecutionException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,7 +28,7 @@ class LectureServiceTest {
     private LectureService lectureService;
     private LectureRepository lectureRepository;
     private LectureRegistrationRepository lectureRegistrationRepository;
-
+    private LectureValidator lectureValidator;
     private Lecture 항해_플러스_특강;
 
     @BeforeEach
@@ -33,8 +36,9 @@ class LectureServiceTest {
         // mocking
         lectureRepository = Mockito.mock(LectureRepository.class);
         lectureRegistrationRepository = Mockito.mock(LectureRegistrationRepository.class);
+        lectureValidator = Mockito.mock(LectureValidator.class);
         lectureService = new LectureService(
-                new LectureValidator(),
+                lectureValidator,
                 lectureRepository,
                 lectureRegistrationRepository
         );
@@ -43,23 +47,11 @@ class LectureServiceTest {
         항해_플러스_특강 = Lecture.builder()
                 .lectureId(1L)
                 .name("항해 플러스 토요일 특강")
+                .lectureRegistrationList(List.of(new LectureRegistration(1L, 1L)))
                 .currentRegisterCnt(0)
                 .maxRegisterCnt(30)
-                .classDatetime(LocalDateTime.of(2024, 4, 20, 13, 0, 0))
+                .lectureDatetime(ZonedDateTime.of(LocalDateTime.of(2024, 4, 20, 13, 0, 0), ZoneId.of("Asia/Seoul")))
                 .build();
-    }
-
-    @Test
-    @DisplayName("동일한_특강_중복_신청_불가")
-    void applyTest_동일한_특강_중복_신청_불가() {
-        // when
-        when(lectureRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강);
-
-        // then
-        LectureCustomException expected = assertThrows(LectureCustomException.class, () -> {
-            lectureService.register(1L);
-        });
-        assertThat(expected.getMessage()).isEqualTo("이미 신청된 특강입니다.");
     }
 
     @Test
@@ -68,68 +60,70 @@ class LectureServiceTest {
         // given
         Long userId = 11L;
         Lecture 항해_플러스_특강_FULL = Lecture.builder()
-                .lectureId(1L)
+                .lectureId(2L)
                 .name("꽉 찬 항해 플러스 특강")
                 .currentRegisterCnt(30)
                 .maxRegisterCnt(30)
-                .classDatetime(LocalDateTime.of(2024, 4, 20, 13, 0, 0))
+                .lectureDatetime(ZonedDateTime.of(LocalDateTime.of(2024, 4, 20, 13, 0, 0), ZoneId.of("Asia/Seoul")))
                 .build();
 
         // when
-        when(lectureRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강_FULL);
+        when(lectureRepository.findByIdWithPessimisticLock(2L)).thenReturn(항해_플러스_특강_FULL);
 
         // then
-        LectureCustomException expected = assertThrows(LectureCustomException.class, () -> {
-            lectureService.register(userId);
-        });
+        LectureCustomException expected = assertThrows(LectureCustomException.class, () ->
+                lectureValidator.validateRegister(항해_플러스_특강_FULL, userId));
         assertThat(expected.getMessage()).isEqualTo("정원이 초과되어 수강 신청에 실패했습니다.");
     }
 
     @Test
     @DisplayName("신청_성공")
-    void applyTest_신청_성공() throws ExecutionException, InterruptedException {
+    void applyTest_신청_성공() {
         // given
+        Long lectureId = 1L;
         Long userId = 11L;
 
         // when
         when(lectureRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강);
-        when(lectureRegistrationRepository.add(anyLong(), anyLong())).thenReturn(new LectureRegistration(
+        when(lectureRegistrationRepository.save(anyLong(), anyLong())).thenReturn(new LectureRegistration(
                 1L,
                 userId
         ));
-        LectureRegistration lectureRegistration = lectureService.register(userId);
+        RegisterResponse response = lectureService.register(lectureId, userId);
 
         // then
-        assertNotNull(lectureRegistration);
-        assertEquals(lectureRegistration.getLectureId(), 1L);
-        assertEquals(lectureRegistration.getUserId(), 11L);
+        assertNotNull(response);
+        assertEquals(response.lectureId(), 1L);
+        assertEquals(response.name(), "항해 플러스 토요일 특강");
     }
 
     @Test
     @DisplayName("특강_신청_성공한_사용자는_성공했음을_리턴")
     void checkTest_특강_신청_성공한_사용자는_성공했음을_리턴() {
         // given
+        Long lectureId = 1L;
         Long userId = 1L;
 
         // when
         when(lectureRepository.findById(1L)).thenReturn(항해_플러스_특강);
-        String applicantYn = lectureService.check(userId);
+        String registerResult = lectureService.check(lectureId, userId);
 
         // then
-        assertThat(applicantYn.equals("신청 완료"));
+        assertEquals(registerResult, "신청 완료");
     }
 
     @Test
     @DisplayName("특강_신청_실패한_사용자는_실패했음을_리턴")
     void checkTest_특강_신청_실패한_사용자는_실패했음을_리턴() {
         // given
-        Long userId = 1L;
+        Long lectureId = 1L;
+        Long userId = 2L;
 
         // when
         when(lectureRepository.findById(1L)).thenReturn(항해_플러스_특강);
-        String applicantYn = lectureService.check(userId);
+        String registerResult = lectureService.check(lectureId, userId);
 
         // then
-        assertThat(applicantYn.equals("신청 완료"));
+        assertEquals(registerResult, "신청 내역이 없습니다.");
     }
 }

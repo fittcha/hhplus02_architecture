@@ -1,5 +1,6 @@
 package io.hhplus.architecture.domain.lecture.repository;
 
+import io.hhplus.architecture.domain.lecture.entity.Lecture;
 import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
@@ -13,5 +14,5 @@ public interface LectureJpaRepository extends JpaRepository<Lecture, Long> {
     @Query("SELECT lt FROM Lecture lt WHERE lt.lectureId = :lectureId")
     Lecture findByIdWithPessimisticLock(Long lectureId);
 
-    Optional<Lecture> findById(Long lectureId);
+    Optional<Lecture> findByName(String name);
 }

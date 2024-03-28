@@ -1,4 +1,4 @@
-package io.hhplus.architecture.classes.lecture;
+package io.hhplus.architecture.lecture;
 
 import io.hhplus.architecture.domain.lecture.service.LectureService;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,19 +49,20 @@ class LectureIntegrationTest {
         ResponseEntity<String> response = restTemplate.getForEntity(LOCAL_HOST + port + PATH + "/" + userId, String.class);
 
         // then
-        assertThat(Objects.requireNonNull(response.getBody()).toString()).isEqualTo("신청 완료");
+        assertThat(Objects.requireNonNull(response.getBody()).toString()).isEqualTo("신청 내역이 없습니다.");
     }
 
     @Test
     @DisplayName("동일한_유저가_따닥_특강_신청")
     void applyTest_동일한_유저가_따닥_특강_신청() {
         // given
+        Long lectureId = 1L;
         Long userId = 1L;
 
         // when - 따닥 특강 신청
         for (int i = 0; i < 2; i++) {
             try {
-                specialClassService.register(userId); // userId 동일
+                specialClassService.register(lectureId, userId); // userId 동일
             } catch (Exception e) {
                 // then
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
@@ -73,12 +74,13 @@ class LectureIntegrationTest {
     @DisplayName("5명이_순차적으로_특강_신청")
     void applyTest_5명이_순차적으로_특강_신청() {
         // given
+        Long lectureId = 1L;
         Long userId = 1L; // 테스트를 위한 시작 userId
 
         // when - 순차적으로 특강 신청
         for (int i = 0; i < 5; i++) {
             try {
-                specialClassService.register(userId + i); // userId 1씩 증가
+                specialClassService.register(lectureId, userId + i); // userId 1씩 증가
             } catch (Exception e) {
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
             }
@@ -92,6 +94,7 @@ class LectureIntegrationTest {
         final ExecutorService service = Executors.newFixedThreadPool(1);
 
         final int numberOfThreads = 10; // 총 신청 횟수
+        Long lectureId = 1L;
         Long userId = 1L; // 테스트를 위한 시작 userId
 
         for (int i = 0; i < numberOfThreads; i++) {
@@ -99,7 +102,7 @@ class LectureIntegrationTest {
             service.submit(() -> {
                 try {
                     // 특강 신청
-                    specialClassService.register(id);
+                    specialClassService.register(lectureId, id);
                 } catch (Exception e) {
                     System.out.println("Error during application for user " + id + ": " + e.getMessage());
                 }
@@ -119,11 +122,12 @@ class LectureIntegrationTest {
     void applyTest_31명이_순차적으로_특강_신청하면_31번째_유저는_실패() {
         // given
         Long userId = 1L; // 테스트를 위한 시작 userId
+        Long lectureId = 1L;
 
         // when - 순차적으로 특강 신청
         for (int i = 0; i < 31; i++) {
             try {
-                specialClassService.register(userId + i); // userId 1씩 증가
+                specialClassService.register(lectureId, userId + i); // userId 1씩 증가
             } catch (Exception e) {
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
             }
@@ -137,13 +141,14 @@ class LectureIntegrationTest {
     @DisplayName("50명이_동시에_특강_신청")
     void applyTest_50명이_동시에_특강_신청() throws ExecutionException, InterruptedException {
         // given
+        Long lectureId = 1L;
         Long userId = 1L; // 테스트를 위한 시작 userId
 
         // when - 동시에 특강 신청
         CompletableFuture<?>[] futures = IntStream.range(0, 50)
                 .mapToObj(i -> CompletableFuture.runAsync(() -> {
                     try {
-                        specialClassService.register(userId + i); // userId 1씩 증가
+                        specialClassService.register(lectureId, userId + i); // userId 1씩 증가
                     } catch (Exception e) {
                         System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
                     }

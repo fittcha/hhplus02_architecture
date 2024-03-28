@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LectureRegistrationRepository {
 
-    LectureRegistration add(Long lectureId, Long userId);
+    LectureRegistration save(Long lectureId, Long userId);
 
     void deleteAll();
 }

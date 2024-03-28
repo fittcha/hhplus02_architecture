@@ -1,7 +1,9 @@
 package io.hhplus.architecture.domain.lecture.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -10,7 +12,7 @@ import java.util.Objects;
 
 @Entity
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "lecture_registration")
 public class LectureRegistration {
 

@@ -15,7 +15,7 @@ public class LectureRegistrationRepositoryImpl implements LectureRegistrationRep
     }
 
     @Override
-    public LectureRegistration add(Long lectureId, Long userId) {
+    public LectureRegistration save(Long lectureId, Long userId) {
         return jpaRepository.save(new LectureRegistration(lectureId, userId));
     }
 
