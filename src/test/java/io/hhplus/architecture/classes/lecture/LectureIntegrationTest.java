@@ -1,7 +1,6 @@
-package io.hhplus.architecture.classes.special_class;
+package io.hhplus.architecture.classes.lecture;
 
-import io.hhplus.architecture.classes.special_class.service.SpecialClassService;
-import io.hhplus.architecture.classes.special_class.service.TestDataHandler;
+import io.hhplus.architecture.domain.lecture.service.LectureService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class SpecialClassIntegrationTest {
+class LectureIntegrationTest {
 
     @LocalServerPort
     private int port;
@@ -26,18 +25,18 @@ class SpecialClassIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
     @Autowired
-    private SpecialClassService specialClassService;
+    private LectureService specialClassService;
     @Autowired
     private TestDataHandler testDataHandler;
 
     private static final String LOCAL_HOST = "http://localhost:";
-    private static final String PATH = "/special-class";
+    private static final String PATH = "/lecture";
 
     @BeforeEach
     void setUp() {
         // 기존 참여자, 현재 특강 신청자 수 초기화
-        testDataHandler.initAttendee();
-        testDataHandler.initSpecialClassNowRegisterCnt();
+        testDataHandler.initRegistration();
+        testDataHandler.initLectureCurrentRegisterCnt();
     }
 
     @Test
@@ -62,7 +61,7 @@ class SpecialClassIntegrationTest {
         // when - 따닥 특강 신청
         for (int i = 0; i < 2; i++) {
             try {
-                specialClassService.regist(userId); // userId 동일
+                specialClassService.register(userId); // userId 동일
             } catch (Exception e) {
                 // then
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
@@ -79,7 +78,7 @@ class SpecialClassIntegrationTest {
         // when - 순차적으로 특강 신청
         for (int i = 0; i < 5; i++) {
             try {
-                specialClassService.regist(userId + i); // userId 1씩 증가
+                specialClassService.register(userId + i); // userId 1씩 증가
             } catch (Exception e) {
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
             }
@@ -87,8 +86,8 @@ class SpecialClassIntegrationTest {
     }
 
     @Test
-    @DisplayName("10명이_동시에_특강_신청_락_확인")
-    void applyTest_10명이_동시에_특강_신청() throws InterruptedException {
+    @DisplayName("스레드_1개_동시에_특강_신청_락_확인")
+    void applyTest_스레드_1개_동시에_특강_신청_락_확인() throws InterruptedException {
         // 고정된 스레드 풀을 1개의 스레드로 설정
         final ExecutorService service = Executors.newFixedThreadPool(1);
 
@@ -100,7 +99,7 @@ class SpecialClassIntegrationTest {
             service.submit(() -> {
                 try {
                     // 특강 신청
-                    specialClassService.regist(id);
+                    specialClassService.register(id);
                 } catch (Exception e) {
                     System.out.println("Error during application for user " + id + ": " + e.getMessage());
                 }
@@ -124,7 +123,7 @@ class SpecialClassIntegrationTest {
         // when - 순차적으로 특강 신청
         for (int i = 0; i < 31; i++) {
             try {
-                specialClassService.regist(userId + i); // userId 1씩 증가
+                specialClassService.register(userId + i); // userId 1씩 증가
             } catch (Exception e) {
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
             }
@@ -144,7 +143,7 @@ class SpecialClassIntegrationTest {
         CompletableFuture<?>[] futures = IntStream.range(0, 50)
                 .mapToObj(i -> CompletableFuture.runAsync(() -> {
                     try {
-                        specialClassService.regist(userId + i); // userId 1씩 증가
+                        specialClassService.register(userId + i); // userId 1씩 증가
                     } catch (Exception e) {
                         System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
                     }
