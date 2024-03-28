@@ -45,4 +45,11 @@ public class LectureValidator {
             throw new LectureCustomException(LectureExceptionEnum.DELETE_DISABLE);
         }
     }
+
+    public void validateCancel(ZonedDateTime lectureDatetime) {
+        // 특강이 이미 진행되었다면 취소 불가
+        if (lectureDatetime.isBefore(ZonedDateTime.now())) {
+            throw new LectureCustomException(LectureExceptionEnum.END_LECTURE);
+        }
+    }
 }

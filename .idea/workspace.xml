@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: lecture/ 네이밍 변경 + 멘토링 기반 구조 뒤엎기">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/db/init/init_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/init/init_data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/LectureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/LectureController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/AddLectureRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/AddLectureRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/GetLectureResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/GetLectureResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/UserIdRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/LectureExceptionEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/LectureExceptionEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/Lecture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/Lecture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/LectureRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/LectureRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRegistrationJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRegistrationJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/LectureIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/LectureIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/TestDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/TestDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: 심화 기능 과제 구현 + 테스트 작성" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -350,7 +326,7 @@
       <workItem from="1711554424010" duration="455000" />
       <workItem from="1711554883534" duration="684000" />
       <workItem from="1711593692695" duration="15050000" />
-      <workItem from="1711635386253" duration="987000" />
+      <workItem from="1711635386253" duration="1138000" />
     </task>
     <task id="LOCAL-00002" summary="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결">
       <created>1711377983625</created>
@@ -382,7 +358,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711529222449</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: 심화 기능 과제 구현 + 테스트 작성">
+      <created>1711636512116</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1711636512116</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +389,8 @@
     <MESSAGE value="feat: 동시성 비동기 -&gt; 동기 방식으로 변경, 동시성 테스트 추가" />
     <MESSAGE value="feat: 엔티티 네이밍 변경" />
     <MESSAGE value="feat: readme 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: readme 수정" />
+    <MESSAGE value="feat: 심화 기능 과제 구현 + 테스트 작성" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 심화 기능 과제 구현 + 테스트 작성" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -42,6 +42,10 @@ public class LectureService implements LectureInterface {
     public void cancel(Long lectureId, Long userId) {
         // 특강 정보 조회
         Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
+
+        // validation
+        lectureValidator.validateCancel(lecture.getLectureDatetime());
+
         // 신청 취소
         lectureRegistrationRepository.deleteByLectureIdAndUserId(lectureId, userId);
         lecture.subRegisterCnt();
