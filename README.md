@@ -33,7 +33,6 @@
 - 2024/03/28 목
   - 특강 목록 조회, 등록, 삭제, 신청 취소 api 구현
   - 심화 기능 테스트 작성
-  - *낙관적 락으로 교체 시도하였으나 데드락 문제 해결 중*
 
 ### Architecture
 ![architecture.PNG](architecture.PNG)
