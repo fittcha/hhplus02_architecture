@@ -3,6 +3,7 @@ package io.hhplus.architecture.controller.dto;
 import io.hhplus.architecture.domain.lecture.entity.Lecture;
 import lombok.Builder;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 public record GetLectureResponse(

@@ -1,14 +1,14 @@
 package io.hhplus.architecture.domain.lecture.service;
 
-import io.hhplus.architecture.controller.dto.AddLectureRequest;
 import io.hhplus.architecture.domain.lecture.LectureCustomException;
 import io.hhplus.architecture.domain.lecture.LectureExceptionEnum;
 import io.hhplus.architecture.domain.lecture.entity.Lecture;
 import io.hhplus.architecture.domain.lecture.repository.LectureRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.time.ZonedDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -30,11 +30,19 @@ public class LectureValidator {
         }
     }
 
-    public void validateAdd(AddLectureRequest request) {
+    public void validateAdd(String name) {
         // 동일한 이름의 특강 존재
-        boolean isExist = lectureRepository.findByName(request.name()).isPresent();
-        if (isExist) {
+        if (lectureRepository.findByName(name).isPresent()) {
             throw new LectureCustomException(LectureExceptionEnum.NAME_EXIST);
+        }
+    }
+
+    public void validateDelete(Long lectureId) {
+        // 특강 날짜가 지나지 않았고 신청자가 존재하면 삭제 불가
+        Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
+        if (!lecture.getLectureDatetime().isBefore(ZonedDateTime.now())
+                && !lecture.getLectureRegistrationList().isEmpty()) {
+            throw new LectureCustomException(LectureExceptionEnum.DELETE_DISABLE);
         }
     }
 }

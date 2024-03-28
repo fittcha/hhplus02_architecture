@@ -4,9 +4,9 @@ import io.hhplus.architecture.controller.dto.AddLectureRequest;
 import io.hhplus.architecture.controller.dto.GetLectureResponse;
 import io.hhplus.architecture.controller.dto.RegisterResponse;
 import io.hhplus.architecture.domain.lecture.entity.Lecture;
-import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
 import io.hhplus.architecture.domain.lecture.repository.LectureRegistrationRepository;
 import io.hhplus.architecture.domain.lecture.repository.LectureRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,9 +38,19 @@ public class LectureService implements LectureInterface {
     }
 
     @Override
+    @Transactional
+    public void cancel(Long lectureId, Long userId) {
+        // 특강 정보 조회
+        Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
+        // 신청 취소
+        lectureRegistrationRepository.deleteByLectureIdAndUserId(lectureId, userId);
+        lecture.subRegisterCnt();
+    }
+
+    @Override
     public String check(Long lectureId, Long userId) {
         // 특강 정보 조회
-        Lecture lecture = lectureRepository.findById(lectureId);
+        Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
 
         // 특강 신청 내역 존재 여부 리턴
         return lecture.getLectureRegistrationList().stream()
@@ -57,14 +67,25 @@ public class LectureService implements LectureInterface {
     @Transactional
     public Long add(AddLectureRequest request) {
         // validation
-        lectureValidator.validateAdd(request);
+        lectureValidator.validateAdd(request.name());
 
-        // 특강 등록
+        // 강의 등록
         Lecture lecture = lectureRepository.save(request.toEntity());
         if (lecture == null) {
             throw new RuntimeException("강의 등록 실패");
         }
 
         return lecture.getLectureId();
+    }
+
+    @Override
+    @Transactional
+    public void delete(Long lectureId) {
+        // validation
+        lectureValidator.validateDelete(lectureId);
+
+        // 강의 삭제
+        lectureRegistrationRepository.deleteByLectureId(lectureId);
+        lectureRepository.deleteById(lectureId);
     }
 }

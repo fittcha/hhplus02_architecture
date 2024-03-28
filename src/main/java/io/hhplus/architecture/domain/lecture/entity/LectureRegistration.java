@@ -26,13 +26,17 @@ public class LectureRegistration {
     @Column(nullable = false)
     private Long userId;
 
-    @CreatedDate
     @Column(nullable = false, updatable = false)
     private ZonedDateTime createDatetime;
 
     public LectureRegistration(Long lectureId, Long userId) {
         this.lectureId = lectureId;
         this.userId = userId;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createDatetime = ZonedDateTime.now();
     }
 
     @Override

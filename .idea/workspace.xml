@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: readme 수정">
-      <change afterPath="$PROJECT_DIR$/architecture.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/RegisterRequest.java" afterDir="false" />
+    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: lecture/ 네이밍 변경 + 멘토링 기반 구조 뒤엎기">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/db/init/init_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/db/init/init_data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/LectureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/LectureController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/AddLectureRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/AddLectureRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/GetLectureResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/GetLectureResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/RegisterResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/RegisterResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/controller/dto/UserIdRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/LectureExceptionEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/LectureExceptionEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/Lecture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/Lecture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/LectureRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/LectureRegistration.java" afterDir="false" />
@@ -25,9 +25,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/classes/lecture/LectureIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/LectureIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/classes/lecture/TestDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/TestDataHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/classes/lecture/service/LectureServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/LectureIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/LectureIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/TestDataHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/TestDataHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,9 +82,9 @@
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
         <option value="AnnotationType" />
+        <option value="Record" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="Record" />
       </list>
     </option>
   </component>
@@ -106,68 +106,68 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build 02_architecture.executor": "Run",
-    "Gradle.SpecialClassIntegrationTest (1).executor": "Run",
-    "Gradle.SpecialClassIntegrationTest.checkTest_특강_신청_여부_조회.executor": "Run",
-    "Gradle.SpecialClassServiceTest (1).executor": "Run",
-    "Gradle.SpecialClassServiceTest.applyTest_동일한_특강_중복_신청_불가.executor": "Run",
-    "Gradle.SpecialClassServiceTest.applyTest_신청자가_30명_이상이면_신청_불가.executor": "Run",
-    "Gradle.hhplus02_architecture [build].executor": "Run",
-    "Gradle.hhplus02_architecture [clean].executor": "Run",
-    "JUnit.LectureIntegrationTest.checkTest_특강_신청_여부_조회.executor": "Run",
-    "JUnit.LectureIntegrationTest.executor": "Run",
-    "JUnit.LectureServiceTest.applyTest_동일한_특강_중복_신청_불가.executor": "Run",
-    "JUnit.LectureServiceTest.applyTest_신청_성공.executor": "Run",
-    "JUnit.LectureServiceTest.applyTest_신청자가_30명_이상이면_신청_불가.executor": "Debug",
-    "JUnit.LectureServiceTest.checkTest_특강_신청_성공한_사용자는_성공했음을_리턴.executor": "Run",
-    "JUnit.LectureServiceTest.checkTest_특강_신청_실패한_사용자는_실패했음을_리턴.executor": "Run",
-    "JUnit.LectureServiceTest.executor": "Run",
-    "JUnit.SpecialClassIntegrationTest.applyTest_10명이_동시에_특강_신청.executor": "Run",
-    "JUnit.SpecialClassIntegrationTest.applyTest_31명이_순차적으로_특강_신청하면_31번째_유저는_실패.executor": "Run",
-    "JUnit.SpecialClassIntegrationTest.applyTest_50명이_동시에_특강_신청.executor": "Run",
-    "JUnit.SpecialClassIntegrationTest.applyTest_5명이_동시에_특강_신청 (1).executor": "Run",
-    "JUnit.SpecialClassIntegrationTest.applyTest_5명이_순차적으로_특강_신청.executor": "Run",
-    "JUnit.SpecialClassIntegrationTest.applyTest_동일한_유저가_따닥_특강_신청.executor": "Run",
-    "JUnit.SpecialClassIntegrationTest.executor": "Run",
-    "JUnit.SpecialClassServiceTest.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "Spring Boot.ArchitectureApplication.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/cseun/hhplus/02_architecture",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "show.migrate.to.gradle.popup": "false",
-    "spring.configuration.checksum": "38c9bea836d07a6f333f61eaeb986098",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build 02_architecture.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SpecialClassIntegrationTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SpecialClassIntegrationTest.checkTest_특강_신청_여부_조회.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SpecialClassServiceTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SpecialClassServiceTest.applyTest_동일한_특강_중복_신청_불가.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SpecialClassServiceTest.applyTest_신청자가_30명_이상이면_신청_불가.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hhplus02_architecture [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.hhplus02_architecture [clean].executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LectureIntegrationTest.checkTest_특강_신청_여부_조회.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LectureIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LectureServiceTest.applyTest_동일한_특강_중복_신청_불가.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LectureServiceTest.applyTest_신청_성공.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LectureServiceTest.applyTest_신청자가_30명_이상이면_신청_불가.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.LectureServiceTest.checkTest_특강_신청_성공한_사용자는_성공했음을_리턴.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LectureServiceTest.checkTest_특강_신청_실패한_사용자는_실패했음을_리턴.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LectureServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpecialClassIntegrationTest.applyTest_10명이_동시에_특강_신청.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpecialClassIntegrationTest.applyTest_31명이_순차적으로_특강_신청하면_31번째_유저는_실패.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpecialClassIntegrationTest.applyTest_50명이_동시에_특강_신청.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpecialClassIntegrationTest.applyTest_5명이_동시에_특강_신청 (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpecialClassIntegrationTest.applyTest_5명이_순차적으로_특강_신청.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpecialClassIntegrationTest.applyTest_동일한_유저가_따닥_특강_신청.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpecialClassIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpecialClassServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ArchitectureApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/cseun/hhplus/02_architecture&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;38c9bea836d07a6f333f61eaeb986098&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2",
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;,
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="io.hhplus.architecture.special_class.repository" />
@@ -196,65 +196,82 @@
       <recent name="io.hhplus.architecture" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.LectureServiceTest.applyTest_신청자가_30명_이상이면_신청_불가">
-    <configuration name="LectureServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.ArchitectureApplication">
+    <configuration name="LectureIntegrationTest.applyTest_50명이_동시에_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hhplus02_architecture.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.hhplus.architecture.lecture.service.*" />
+          <option name="PATTERN" value="io.hhplus.architecture.lecture.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture.service" />
-      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.service.LectureServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LectureServiceTest.applyTest_신청_성공" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hhplus02_architecture.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.hhplus.architecture.lecture.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture.service" />
-      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.service.LectureServiceTest" />
-      <option name="METHOD_NAME" value="applyTest_신청_성공" />
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.LectureIntegrationTest" />
+      <option name="METHOD_NAME" value="applyTest_50명이_동시에_특강_신청" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LectureServiceTest.applyTest_신청자가_30명_이상이면_신청_불가" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LectureIntegrationTest.applyTest_5명이_순차적으로_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hhplus02_architecture.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.hhplus.architecture.lecture.service.*" />
+          <option name="PATTERN" value="io.hhplus.architecture.lecture.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture.service" />
-      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.service.LectureServiceTest" />
-      <option name="METHOD_NAME" value="applyTest_신청자가_30명_이상이면_신청_불가" />
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.LectureIntegrationTest" />
+      <option name="METHOD_NAME" value="applyTest_5명이_순차적으로_특강_신청" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LectureServiceTest.checkTest_특강_신청_성공한_사용자는_성공했음을_리턴" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LectureIntegrationTest.deleteTest_강의_삭제" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hhplus02_architecture.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.hhplus.architecture.lecture.service.*" />
+          <option name="PATTERN" value="io.hhplus.architecture.lecture.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture.service" />
-      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.service.LectureServiceTest" />
-      <option name="METHOD_NAME" value="checkTest_특강_신청_성공한_사용자는_성공했음을_리턴" />
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.LectureIntegrationTest" />
+      <option name="METHOD_NAME" value="deleteTest_강의_삭제" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LectureIntegrationTest.readAllTest_특강_목록_조회" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hhplus02_architecture.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.hhplus.architecture.lecture.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.LectureIntegrationTest" />
+      <option name="METHOD_NAME" value="readAllTest_특강_목록_조회" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LectureIntegrationTest.registerTest_동일한_유저가_따닥_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hhplus02_architecture.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.hhplus.architecture.lecture.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture" />
+      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.LectureIntegrationTest" />
+      <option name="METHOD_NAME" value="registerTest_동일한_유저가_따닥_특강_신청" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -298,11 +315,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LectureServiceTest.applyTest_신청자가_30명_이상이면_신청_불가" />
-        <item itemvalue="JUnit.LectureServiceTest" />
-        <item itemvalue="JUnit.LectureServiceTest.checkTest_특강_신청_성공한_사용자는_성공했음을_리턴" />
-        <item itemvalue="JUnit.LectureServiceTest.checkTest_특강_신청_실패한_사용자는_실패했음을_리턴" />
-        <item itemvalue="JUnit.LectureServiceTest.applyTest_신청_성공" />
+        <item itemvalue="JUnit.LectureIntegrationTest.readAllTest_특강_목록_조회" />
+        <item itemvalue="JUnit.LectureIntegrationTest.applyTest_50명이_동시에_특강_신청" />
+        <item itemvalue="JUnit.LectureIntegrationTest.applyTest_5명이_순차적으로_특강_신청" />
+        <item itemvalue="JUnit.LectureIntegrationTest.registerTest_동일한_유저가_따닥_특강_신청" />
+        <item itemvalue="JUnit.LectureIntegrationTest.deleteTest_강의_삭제" />
       </list>
     </recent_temporary>
   </component>
@@ -333,6 +350,7 @@
       <workItem from="1711554424010" duration="455000" />
       <workItem from="1711554883534" duration="684000" />
       <workItem from="1711593692695" duration="15050000" />
+      <workItem from="1711635386253" duration="987000" />
     </task>
     <task id="LOCAL-00002" summary="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결">
       <created>1711377983625</created>

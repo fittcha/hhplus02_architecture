@@ -12,11 +12,15 @@ public interface LectureRepository {
 
     Lecture findByIdWithPessimisticLock(@Param("lectureId") Long lectureId);
 
-    Lecture findById(Long lectureId);
+    Optional<Lecture> findById(Long lectureId);
 
     Lecture save(Lecture lecture);
 
     List<Lecture> findAll();
 
     Optional<Lecture> findByName(String name);
+
+    void deleteById(Long lectureId);
+
+    void deleteAll();
 }

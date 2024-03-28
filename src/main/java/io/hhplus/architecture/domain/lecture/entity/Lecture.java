@@ -3,8 +3,11 @@ package io.hhplus.architecture.domain.lecture.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.OptimisticLockType;
+import org.hibernate.annotations.OptimisticLocking;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -37,7 +40,6 @@ public class Lecture {
     @Column(nullable = false)
     private ZonedDateTime lectureDatetime;
 
-    @CreatedDate
     @Column(nullable = false, updatable = false)
     private ZonedDateTime createDatetime;
 
@@ -45,16 +47,25 @@ public class Lecture {
     private ZonedDateTime updateDatetime;
 
     @Builder
-    public Lecture(Long lectureId, String name, List<LectureRegistration> lectureRegistrationList, int currentRegisterCnt, int maxRegisterCnt, ZonedDateTime lectureDatetime) {
+    public Lecture(Long lectureId, String name, int currentRegisterCnt, int maxRegisterCnt, ZonedDateTime lectureDatetime) {
         this.lectureId = lectureId;
         this.name = name;
+        this.currentRegisterCnt = currentRegisterCnt;
         this.maxRegisterCnt = maxRegisterCnt;
         this.lectureDatetime = lectureDatetime;
     }
 
+    @PrePersist
+    protected void onCreate() {
+        createDatetime = ZonedDateTime.now();
+    }
 
     public void addRegisterCnt() {
-        this.currentRegisterCnt = this.currentRegisterCnt + 1;
+        this.currentRegisterCnt += 1;
+    }
+
+    public void subRegisterCnt() {
+        this.currentRegisterCnt -= 1;
     }
 
     public void initRegister() {

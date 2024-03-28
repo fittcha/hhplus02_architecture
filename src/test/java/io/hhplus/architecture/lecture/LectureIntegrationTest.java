@@ -1,15 +1,25 @@
 package io.hhplus.architecture.lecture;
 
+import io.hhplus.architecture.controller.dto.AddLectureRequest;
+import io.hhplus.architecture.controller.dto.GetLectureResponse;
+import io.hhplus.architecture.controller.dto.RegisterResponse;
+import io.hhplus.architecture.controller.dto.UserIdRequest;
 import io.hhplus.architecture.domain.lecture.service.LectureService;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.*;
 import java.util.stream.IntStream;
@@ -25,7 +35,7 @@ class LectureIntegrationTest {
     @Autowired
     private TestRestTemplate restTemplate;
     @Autowired
-    private LectureService specialClassService;
+    private LectureService lectureService;
     @Autowired
     private TestDataHandler testDataHandler;
 
@@ -34,19 +44,22 @@ class LectureIntegrationTest {
 
     @BeforeEach
     void setUp() {
+        // 특강 정보 초기화
+        testDataHandler.initLecture();
         // 기존 참여자, 현재 특강 신청자 수 초기화
         testDataHandler.initRegistration();
-        testDataHandler.initLectureCurrentRegisterCnt();
+        // 특강 정보 등록
+        testDataHandler.addLecture();
     }
 
     @Test
     @DisplayName("특강_신청_여부_조회")
     void checkTest_특강_신청_여부_조회() {
         // given
-        Long userId = 1L;
+        Long lectureId = lectureService.readAll().get(0).lectureId();
 
         // when
-        ResponseEntity<String> response = restTemplate.getForEntity(LOCAL_HOST + port + PATH + "/" + userId, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(LOCAL_HOST + port + PATH + "/" + lectureId + "?userId=1", String.class);
 
         // then
         assertThat(Objects.requireNonNull(response.getBody()).toString()).isEqualTo("신청 내역이 없습니다.");
@@ -54,15 +67,15 @@ class LectureIntegrationTest {
 
     @Test
     @DisplayName("동일한_유저가_따닥_특강_신청")
-    void applyTest_동일한_유저가_따닥_특강_신청() {
+    void registerTest_동일한_유저가_따닥_특강_신청() {
         // given
-        Long lectureId = 1L;
+        Long lectureId = lectureService.readAll().get(0).lectureId();
         Long userId = 1L;
 
         // when - 따닥 특강 신청
         for (int i = 0; i < 2; i++) {
             try {
-                specialClassService.register(lectureId, userId); // userId 동일
+                restTemplate.postForEntity(LOCAL_HOST + port + PATH + "/" + lectureId, new UserIdRequest(userId), RegisterResponse.class);
             } catch (Exception e) {
                 // then
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
@@ -74,13 +87,13 @@ class LectureIntegrationTest {
     @DisplayName("5명이_순차적으로_특강_신청")
     void applyTest_5명이_순차적으로_특강_신청() {
         // given
-        Long lectureId = 1L;
+        Long lectureId = lectureService.readAll().get(0).lectureId();
         Long userId = 1L; // 테스트를 위한 시작 userId
 
         // when - 순차적으로 특강 신청
         for (int i = 0; i < 5; i++) {
             try {
-                specialClassService.register(lectureId, userId + i); // userId 1씩 증가
+                restTemplate.postForEntity(LOCAL_HOST + port + PATH + "/" + lectureId, new UserIdRequest(userId + i), RegisterResponse.class);
             } catch (Exception e) {
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
             }
@@ -94,7 +107,7 @@ class LectureIntegrationTest {
         final ExecutorService service = Executors.newFixedThreadPool(1);
 
         final int numberOfThreads = 10; // 총 신청 횟수
-        Long lectureId = 1L;
+        Long lectureId = lectureService.readAll().get(0).lectureId();
         Long userId = 1L; // 테스트를 위한 시작 userId
 
         for (int i = 0; i < numberOfThreads; i++) {
@@ -102,7 +115,7 @@ class LectureIntegrationTest {
             service.submit(() -> {
                 try {
                     // 특강 신청
-                    specialClassService.register(lectureId, id);
+                    restTemplate.postForEntity(LOCAL_HOST + port + PATH + "/" + lectureId, new UserIdRequest(id), RegisterResponse.class);
                 } catch (Exception e) {
                     System.out.println("Error during application for user " + id + ": " + e.getMessage());
                 }
@@ -121,13 +134,13 @@ class LectureIntegrationTest {
     @DisplayName("31명이_순차적으로_특강_신청하면_31번째_유저는_실패")
     void applyTest_31명이_순차적으로_특강_신청하면_31번째_유저는_실패() {
         // given
+        Long lectureId = lectureService.readAll().get(0).lectureId();
         Long userId = 1L; // 테스트를 위한 시작 userId
-        Long lectureId = 1L;
 
         // when - 순차적으로 특강 신청
         for (int i = 0; i < 31; i++) {
             try {
-                specialClassService.register(lectureId, userId + i); // userId 1씩 증가
+                restTemplate.postForEntity(LOCAL_HOST + port + PATH + "/" + lectureId, new UserIdRequest(userId + i), RegisterResponse.class);
             } catch (Exception e) {
                 System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
             }
@@ -141,14 +154,14 @@ class LectureIntegrationTest {
     @DisplayName("50명이_동시에_특강_신청")
     void applyTest_50명이_동시에_특강_신청() throws ExecutionException, InterruptedException {
         // given
-        Long lectureId = 1L;
+        Long lectureId = lectureService.readAll().get(0).lectureId();
         Long userId = 1L; // 테스트를 위한 시작 userId
 
         // when - 동시에 특강 신청
         CompletableFuture<?>[] futures = IntStream.range(0, 50)
                 .mapToObj(i -> CompletableFuture.runAsync(() -> {
                     try {
-                        specialClassService.register(lectureId, userId + i); // userId 1씩 증가
+                        restTemplate.postForEntity(LOCAL_HOST + port + PATH + "/" + lectureId, new UserIdRequest(userId + i), RegisterResponse.class);
                     } catch (Exception e) {
                         System.out.println("Error during application for user " + (userId + i) + ": " + e.getMessage());
                     }
@@ -160,5 +173,41 @@ class LectureIntegrationTest {
 
         // then
         // 30명만 성공
+    }
+
+    @Test
+    @DisplayName("특강_신청_취소")
+    void cancelTest_특강_신청_취소() {
+        // given
+        Long lectureId = lectureService.readAll().get(0).lectureId();
+        Long userId = 1L;
+        applyTest_5명이_순차적으로_특강_신청();
+
+        // when
+        restTemplate.postForEntity(LOCAL_HOST + port + PATH + "/" + lectureId + "/cancel", new UserIdRequest(userId), Void.class);
+    }
+
+    @Test
+    @DisplayName("강의_등록")
+    void addTest_강의_등록() {
+        // given
+        AddLectureRequest request = AddLectureRequest.builder()
+                .name("새로운 강의")
+                .maxRegisterCnt(30)
+                .lectureDatetime(ZonedDateTime.of(LocalDateTime.of(2024,5,10,14,0,0), ZoneId.of("Asia/Seoul")))
+                .build();
+
+        // when
+        restTemplate.postForEntity(LOCAL_HOST + port + PATH, request, Object.class);
+    }
+
+    @Test
+    @DisplayName("강의_삭제")
+    void deleteTest_강의_삭제() {
+        // given
+        Long lectureId = lectureService.readAll().get(0).lectureId();
+
+        // when
+        restTemplate.delete(LOCAL_HOST + port + PATH + "/" + lectureId);
     }
 }
