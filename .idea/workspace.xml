@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: 심화 기능 과제 구현 + 테스트 작성" />
+    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="feat: 심화 기능 과제 구현 + 테스트 작성">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +71,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;fittcha&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/fittcha/hhplus02_architecture.git&quot;,
+    &quot;accountId&quot;: &quot;c87c943a-7733-4f35-8c29-45dcbc68a53c&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/lib/src.zip!/java.base/java/time/LocalDateTime.java" root0="SKIP_INSPECTION" />
   </component>
@@ -299,6 +315,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -327,6 +351,17 @@
       <workItem from="1711554883534" duration="684000" />
       <workItem from="1711593692695" duration="15050000" />
       <workItem from="1711635386253" duration="1138000" />
+      <workItem from="1711637240674" duration="304000" />
+      <workItem from="1711980057679" duration="12000" />
+      <workItem from="1711980108506" duration="1788000" />
+      <workItem from="1712137486238" duration="5229000" />
+      <workItem from="1712242120409" duration="1774000" />
+      <workItem from="1712745805236" duration="593000" />
+      <workItem from="1712748560701" duration="5767000" />
+      <workItem from="1712832606476" duration="605000" />
+      <workItem from="1712834953686" duration="599000" />
+      <workItem from="1712845423550" duration="1186000" />
+      <workItem from="1713271664556" duration="1857000" />
     </task>
     <task id="LOCAL-00002" summary="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결">
       <created>1711377983625</created>
@@ -365,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711636512116</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: 심화 기능 과제 구현 + 테스트 작성">
+      <created>1711637456981</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711637456981</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

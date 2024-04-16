@@ -1,25 +1,21 @@
 package io.hhplus.architecture.lecture;
 
 import io.hhplus.architecture.controller.dto.AddLectureRequest;
-import io.hhplus.architecture.controller.dto.GetLectureResponse;
 import io.hhplus.architecture.controller.dto.RegisterResponse;
 import io.hhplus.architecture.controller.dto.UserIdRequest;
 import io.hhplus.architecture.domain.lecture.service.LectureService;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.*;
 import java.util.stream.IntStream;
