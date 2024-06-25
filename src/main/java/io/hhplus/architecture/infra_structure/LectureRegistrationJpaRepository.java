@@ -1,4 +1,4 @@
-package io.hhplus.architecture.domain.lecture.repository;
+package io.hhplus.architecture.infra_structure;
 
 import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
 import org.springframework.data.jpa.repository.JpaRepository;

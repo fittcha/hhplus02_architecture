@@ -1,7 +1,6 @@
 package io.hhplus.architecture.infra_structure;
 
 import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
-import io.hhplus.architecture.domain.lecture.repository.LectureRegistrationJpaRepository;
 import io.hhplus.architecture.domain.lecture.repository.LectureRegistrationRepository;
 import org.springframework.stereotype.Repository;
 
