@@ -43,7 +43,7 @@
 ### Architecture
 ![architecture.PNG](architecture.PNG)
 ### ERD 명세
-![lectureERD.png](lectureERD.png)
+![lectureERD.PNG](lectureERD.PNG)
 
 
 ### 2주차 인사이트
