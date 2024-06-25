@@ -1,6 +1,9 @@
 package io.hhplus.architecture.controller;
 
-import io.hhplus.architecture.controller.dto.*;
+import io.hhplus.architecture.controller.dto.AddLectureRequest;
+import io.hhplus.architecture.controller.dto.GetLectureResponse;
+import io.hhplus.architecture.controller.dto.RegisterResponse;
+import io.hhplus.architecture.controller.dto.UserIdRequest;
 import io.hhplus.architecture.domain.lecture.service.LectureService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/lecture")
+@RequestMapping("/lectures")
 @RestController
 @RequiredArgsConstructor
 public class LectureController {
@@ -23,7 +26,7 @@ public class LectureController {
     }
 
     // 특강 신청 여부 조회
-    @GetMapping("/{lectureId}")
+    @GetMapping("/{lectureId}/application")
     public String check(@PathVariable(value = "lectureId") Long lectureId, @NotNull @RequestParam(value = "userId") Long userId) {
         return service.check(lectureId, userId);
     }

@@ -2,10 +2,10 @@ package io.hhplus.architecture.lecture.service;
 
 import io.hhplus.architecture.controller.dto.AddLectureRequest;
 import io.hhplus.architecture.controller.dto.RegisterResponse;
-import io.hhplus.architecture.domain.lecture.LectureExceptionEnum;
-import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
 import io.hhplus.architecture.domain.lecture.LectureCustomException;
+import io.hhplus.architecture.domain.lecture.LectureExceptionEnum;
 import io.hhplus.architecture.domain.lecture.entity.Lecture;
+import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
 import io.hhplus.architecture.domain.lecture.repository.LectureRegistrationRepository;
 import io.hhplus.architecture.domain.lecture.repository.LectureRepository;
 import io.hhplus.architecture.domain.lecture.service.LectureService;
@@ -57,8 +57,8 @@ class LectureServiceTest {
     }
 
     @Test
-    @DisplayName("신청자가_30명_이상이면_신청_불가")
-    void registerTest_신청자가_30명_이상이면_신청_불가() {
+    @DisplayName("해당 특강의 신청자가 30명 이상이면 신청 불가")
+    void failWhenLectureIsFull() {
         // given
         Long userId = 11L;
         Lecture 항해_플러스_특강_FULL = Lecture.builder()
@@ -79,8 +79,8 @@ class LectureServiceTest {
     }
 
     @Test
-    @DisplayName("신청_성공")
-    void registerTest_신청_성공() {
+    @DisplayName("특강 신청 성공")
+    void successWhenLectureIsAvailable() {
         // given
         Long lectureId = 1L;
         Long userId = 11L;
@@ -100,8 +100,8 @@ class LectureServiceTest {
     }
 
     @Test
-    @DisplayName("특강_신청_실패한_사용자는_실패했음을_리턴")
-    void checkTest_특강_신청_실패한_사용자는_실패했음을_리턴() {
+    @DisplayName("특강 신청을 실패하면 유저에게 실패했음을 반환")
+    void returnWhenLectureIsNotAvailable() {
         // given
         Long lectureId = 1L;
         Long userId = 2L;
@@ -115,8 +115,8 @@ class LectureServiceTest {
     }
 
     @Test
-    @DisplayName("동일한_이름의_특강은_등록_불가")
-    void addTest_동일한_이름의_특강은_등록_불가() {
+    @DisplayName("동일한 이름의 특강은 등록 불가")
+    void failAddLectureWhenAlreadyExistLectureName() {
         // given
         String name = "항해 플러스 토요일 특강";
 
@@ -131,8 +131,8 @@ class LectureServiceTest {
     }
 
     @Test
-    @DisplayName("특강_날짜가_지나지_않았고_신청자가_존재하면_삭제_불가")
-    void deleteTest_특강_날짜가_지나지_않았고_신청자가_존재하면_삭제_불가() {
+    @DisplayName("특강 날짜가 지나지 않았거나 신청자가 존재하면 특강 삭제 불가")
+    void failDeleteLectureWhenNotEndOrApplierExist() {
         // given
         Long lectureId = 1L;
 
