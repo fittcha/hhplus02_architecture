@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="refactor: 소스 리팩토링" />
+    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="refactor: ORM Repository 인프라 레이어로 이동">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/Lecture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/Lecture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/LectureRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/LectureRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRegistrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -82,6 +93,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/lib/src.zip!/java.base/java/time/LocalDateTime.java" root0="SKIP_INSPECTION" />
   </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -184,7 +198,7 @@
       <recent name="io.hhplus.architecture" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ArchitectureApplication">
+  <component name="RunManager" selected="JUnit.LectureServiceTest">
     <configuration name="LectureIntegrationTest.applyTest_50명이_동시에_특강_신청" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hhplus02_architecture.test" />
       <extension name="coverage">
@@ -212,22 +226,6 @@
       <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture" />
       <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.LectureIntegrationTest" />
       <option name="METHOD_NAME" value="applyTest_5명이_순차적으로_특강_신청" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LectureIntegrationTest.deleteTest_강의_삭제" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hhplus02_architecture.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.hhplus.architecture.lecture.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture" />
-      <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.LectureIntegrationTest" />
-      <option name="METHOD_NAME" value="deleteTest_강의_삭제" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -265,7 +263,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LectureServiceTest.checkTest_특강_신청_실패한_사용자는_실패했음을_리턴" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LectureServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hhplus02_architecture.test" />
       <extension name="coverage">
         <pattern>
@@ -275,8 +273,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="io.hhplus.architecture.lecture.service" />
       <option name="MAIN_CLASS_NAME" value="io.hhplus.architecture.lecture.service.LectureServiceTest" />
-      <option name="METHOD_NAME" value="checkTest_특강_신청_실패한_사용자는_실패했음을_리턴" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -303,11 +300,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LectureServiceTest" />
         <item itemvalue="JUnit.LectureIntegrationTest.readAllTest_특강_목록_조회" />
         <item itemvalue="JUnit.LectureIntegrationTest.applyTest_50명이_동시에_특강_신청" />
         <item itemvalue="JUnit.LectureIntegrationTest.applyTest_5명이_순차적으로_특강_신청" />
         <item itemvalue="JUnit.LectureIntegrationTest.registerTest_동일한_유저가_따닥_특강_신청" />
-        <item itemvalue="JUnit.LectureIntegrationTest.deleteTest_강의_삭제" />
       </list>
     </recent_temporary>
   </component>
@@ -362,7 +359,9 @@
       <workItem from="1714675078603" duration="626000" />
       <workItem from="1714677121465" duration="598000" />
       <workItem from="1714795399027" duration="599000" />
-      <workItem from="1719240144614" duration="2307000" />
+      <workItem from="1719240144614" duration="4122000" />
+      <workItem from="1719418505967" duration="2302000" />
+      <workItem from="1720096742816" duration="4450000" />
     </task>
     <task id="LOCAL-00002" summary="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결">
       <created>1711377983625</created>
@@ -432,7 +431,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719320380530</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="refactor: ORM Repository 인프라 레이어로 이동">
+      <option name="closed" value="true" />
+      <created>1719325277441</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719325277441</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,8 +452,19 @@
         <option value="Default.Author" />
         <option value="Default.Date" />
         <option value="Default.Subject" />
-        <option value="Space.CommitStatus" />
+        <option value="GitHub.CommitStatus" />
       </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
@@ -459,7 +477,8 @@
     <MESSAGE value="feat: 심화 기능 과제 구현 + 테스트 작성" />
     <MESSAGE value="feat: 소스 정리" />
     <MESSAGE value="refactor: 소스 리팩토링" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: 소스 리팩토링" />
+    <MESSAGE value="refactor: ORM Repository 인프라 레이어로 이동" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: ORM Repository 인프라 레이어로 이동" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

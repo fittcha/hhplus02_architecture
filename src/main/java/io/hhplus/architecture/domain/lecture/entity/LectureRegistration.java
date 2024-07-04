@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -20,8 +18,9 @@ public class LectureRegistration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lectureRegistrationId;
 
-    @Column(name = "lecture_id")
-    private Long lectureId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lecture_id")
+    private Lecture lecture;
 
     @Column(nullable = false)
     private Long userId;
@@ -29,8 +28,8 @@ public class LectureRegistration {
     @Column(nullable = false, updatable = false)
     private ZonedDateTime createDatetime;
 
-    public LectureRegistration(Long lectureId, Long userId) {
-        this.lectureId = lectureId;
+    public LectureRegistration(Lecture lecture, Long userId) {
+        this.lecture = lecture;
         this.userId = userId;
     }
 

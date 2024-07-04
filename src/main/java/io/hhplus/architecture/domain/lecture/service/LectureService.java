@@ -32,7 +32,7 @@ public class LectureService implements LectureInterface {
 
         // 특강 신청
         lecture.addRegisterCnt();
-        lectureRegistrationRepository.save(lecture.getLectureId(), userId);
+        lectureRegistrationRepository.save(lecture, userId);
 
         return RegisterResponse.from(lecture);
     }
@@ -47,7 +47,7 @@ public class LectureService implements LectureInterface {
         lectureValidator.validateCancel(lecture.getLectureDatetime());
 
         // 신청 취소
-        lectureRegistrationRepository.deleteByLectureIdAndUserId(lectureId, userId);
+        lectureRegistrationRepository.deleteByLectureAndUserId(lecture, userId);
         lecture.subRegisterCnt();
     }
 
@@ -57,8 +57,9 @@ public class LectureService implements LectureInterface {
         Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
 
         // 특강 신청 내역 존재 여부 리턴
-        return lecture.getLectureRegistrationList().stream()
-                .anyMatch(v -> v.getUserId().equals(userId)) ? "신청 완료" : "신청 내역이 없습니다.";
+//        return lecture.getLectureRegistrationList().stream()
+//                .anyMatch(v -> v.getUserId().equals(userId)) ? "신청 완료" : "신청 내역이 없습니다.";
+        return null;
     }
 
     @Override
@@ -85,11 +86,13 @@ public class LectureService implements LectureInterface {
     @Override
     @Transactional
     public void delete(Long lectureId) {
+        Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
+
         // validation
         lectureValidator.validateDelete(lectureId);
 
         // 강의 삭제
-        lectureRegistrationRepository.deleteByLectureId(lectureId);
+        lectureRegistrationRepository.deleteByLecture(lecture);
         lectureRepository.deleteById(lectureId);
     }
 }

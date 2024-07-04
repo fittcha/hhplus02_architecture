@@ -1,5 +1,6 @@
 package io.hhplus.architecture.infra_structure;
 
+import io.hhplus.architecture.domain.lecture.entity.Lecture;
 import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
 import io.hhplus.architecture.domain.lecture.repository.LectureRegistrationRepository;
 import org.springframework.stereotype.Repository;
@@ -14,8 +15,8 @@ public class LectureRegistrationRepositoryImpl implements LectureRegistrationRep
     }
 
     @Override
-    public LectureRegistration save(Long lectureId, Long userId) {
-        return jpaRepository.save(new LectureRegistration(lectureId, userId));
+    public LectureRegistration save(Lecture lecture, Long userId) {
+        return jpaRepository.save(new LectureRegistration(lecture, userId));
     }
 
     @Override
@@ -24,12 +25,12 @@ public class LectureRegistrationRepositoryImpl implements LectureRegistrationRep
     }
 
     @Override
-    public void deleteByLectureIdAndUserId(Long lectureId, Long userId) {
-        jpaRepository.deleteByLectureIdAndUserId(lectureId, userId);
+    public void deleteByLectureAndUserId(Lecture lecture, Long userId) {
+        jpaRepository.deleteByLectureAndUserId(lecture, userId);
     }
 
     @Override
-    public void deleteByLectureId(Long lectureId) {
-        jpaRepository.deleteByLectureId(lectureId);
+    public void deleteByLecture(Lecture lecture) {
+        jpaRepository.deleteByLecture(lecture);
     }
 }

@@ -1,16 +1,17 @@
 package io.hhplus.architecture.domain.lecture.repository;
 
+import io.hhplus.architecture.domain.lecture.entity.Lecture;
 import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LectureRegistrationRepository {
 
-    LectureRegistration save(Long lectureId, Long userId);
+    LectureRegistration save(Lecture lecture, Long userId);
 
     void deleteAll();
 
-    void deleteByLectureIdAndUserId(Long lectureId, Long userId);
+    void deleteByLectureAndUserId(Lecture lecture, Long userId);
 
-    void deleteByLectureId(Long lectureId);
+    void deleteByLecture(Lecture lecture);
 }

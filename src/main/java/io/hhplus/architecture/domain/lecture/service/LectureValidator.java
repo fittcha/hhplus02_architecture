@@ -23,8 +23,9 @@ public class LectureValidator {
         }
 
         // 이미 동일한 특강을 신청함
-        boolean isExist = lecture.getLectureRegistrationList().stream()
-                .anyMatch(v -> v.getUserId().equals(userId));
+//        boolean isExist = lecture.getLectureRegistrationList().stream()
+//                .anyMatch(v -> v.getUserId().equals(userId));
+        boolean isExist = false;
         if (isExist) {
             throw new LectureCustomException(LectureExceptionEnum.ALREADY_APPLIED);
         }
@@ -40,8 +41,9 @@ public class LectureValidator {
     public void validateDelete(Long lectureId) {
         // 특강 날짜가 지나지 않았고 신청자가 존재하면 삭제 불가
         Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
-        if (!lecture.getLectureDatetime().isBefore(ZonedDateTime.now())
-                && !lecture.getLectureRegistrationList().isEmpty()) {
+        if (true) {
+//        if (!lecture.getLectureDatetime().isBefore(ZonedDateTime.now())
+//                && !lecture.getLectureRegistrationList().isEmpty()) {
             throw new LectureCustomException(LectureExceptionEnum.DELETE_DISABLE);
         }
     }

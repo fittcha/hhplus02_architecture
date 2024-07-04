@@ -1,18 +1,14 @@
 package io.hhplus.architecture.domain.lecture.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.OptimisticLockType;
-import org.hibernate.annotations.OptimisticLocking;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -27,10 +23,6 @@ public class Lecture {
 
     @Column(nullable = false, length = 25)
     private String name;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "lecture_id")
-    private List<LectureRegistration> lectureRegistrationList = new ArrayList();
 
     @Column(nullable = false)
     private int currentRegisterCnt = 0;

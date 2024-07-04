@@ -87,8 +87,8 @@ class LectureServiceTest {
 
         // when
         when(lectureRepository.findByIdWithPessimisticLock(1L)).thenReturn(항해_플러스_특강);
-        when(lectureRegistrationRepository.save(anyLong(), anyLong())).thenReturn(new LectureRegistration(
-                1L,
+        when(lectureRegistrationRepository.save(any(), anyLong())).thenReturn(new LectureRegistration(
+                항해_플러스_특강,
                 userId
         ));
         RegisterResponse response = lectureService.register(lectureId, userId);
