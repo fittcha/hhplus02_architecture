@@ -3,6 +3,8 @@ package io.hhplus.architecture.domain.lecture.service;
 import io.hhplus.architecture.domain.lecture.LectureCustomException;
 import io.hhplus.architecture.domain.lecture.LectureExceptionEnum;
 import io.hhplus.architecture.domain.lecture.entity.Lecture;
+import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
+import io.hhplus.architecture.domain.lecture.repository.LectureRegistrationRepository;
 import io.hhplus.architecture.domain.lecture.repository.LectureRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import java.time.ZonedDateTime;
 public class LectureValidator {
 
     private final LectureRepository lectureRepository;
+    private final LectureRegistrationRepository lectureRegistrationRepository;
 
     public void validateRegister(Lecture lecture, Long userId) {
         // 특강 정원 초과
@@ -23,10 +26,8 @@ public class LectureValidator {
         }
 
         // 이미 동일한 특강을 신청함
-//        boolean isExist = lecture.getLectureRegistrationList().stream()
-//                .anyMatch(v -> v.getUserId().equals(userId));
-        boolean isExist = false;
-        if (isExist) {
+        LectureRegistration lectureRegistration = lectureRegistrationRepository.findByLectureAndUserId(lecture, userId);
+        if (lectureRegistration != null) {
             throw new LectureCustomException(LectureExceptionEnum.ALREADY_APPLIED);
         }
     }

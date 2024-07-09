@@ -8,4 +8,6 @@ public interface LectureRegistrationJpaRepository extends JpaRepository<LectureR
     void deleteByLectureAndUserId(Lecture lecture, Long userId);
 
     void deleteByLecture(Lecture lecture);
+
+    LectureRegistration findByLectureAndUserId(Lecture lecture, Long userId);
 }

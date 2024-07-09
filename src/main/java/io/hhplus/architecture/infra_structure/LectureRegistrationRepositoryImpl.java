@@ -33,4 +33,9 @@ public class LectureRegistrationRepositoryImpl implements LectureRegistrationRep
     public void deleteByLecture(Lecture lecture) {
         jpaRepository.deleteByLecture(lecture);
     }
+
+    @Override
+    public LectureRegistration findByLectureAndUserId(Lecture lecture, Long userId) {
+        return jpaRepository.findByLectureAndUserId(lecture, userId);
+    }
 }

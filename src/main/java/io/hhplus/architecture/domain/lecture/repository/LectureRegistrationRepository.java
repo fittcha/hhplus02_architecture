@@ -14,4 +14,6 @@ public interface LectureRegistrationRepository {
     void deleteByLectureAndUserId(Lecture lecture, Long userId);
 
     void deleteByLecture(Lecture lecture);
+
+    LectureRegistration findByLectureAndUserId(Lecture lecture, Long userId);
 }
