@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="refactor: ORM Repository 인프라 레이어로 이동">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="adb46ae4-73c2-4d18-95c1-19c403d66d43" name="Changes" comment="refactor: 로직 개선">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/Lecture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/Lecture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/LectureRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/entity/LectureRegistration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/repository/LectureRegistrationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/domain/lecture/service/LectureValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationJpaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/hhplus/architecture/infra_structure/LectureRegistrationRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/io/hhplus/architecture/lecture/service/LectureServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,9 +89,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/lib/src.zip!/java.base/java/time/LocalDateTime.java" root0="SKIP_INSPECTION" />
   </component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -361,7 +358,9 @@
       <workItem from="1714795399027" duration="599000" />
       <workItem from="1719240144614" duration="4122000" />
       <workItem from="1719418505967" duration="2302000" />
-      <workItem from="1720096742816" duration="4450000" />
+      <workItem from="1720096742816" duration="8008000" />
+      <workItem from="1722247143865" duration="3000" />
+      <workItem from="1722427133401" duration="2545000" />
     </task>
     <task id="LOCAL-00002" summary="feat: README 추가, 동시성 제어 비관적락 추가, h2 DB 연결">
       <created>1711377983625</created>
@@ -439,7 +438,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719325277441</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="refactor: 객체 연관관계 변경">
+      <option name="closed" value="true" />
+      <created>1720102902609</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1720102902609</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactor: 로직 개선">
+      <option name="closed" value="true" />
+      <created>1720535492887</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1720535492887</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,7 +493,9 @@
     <MESSAGE value="feat: 소스 정리" />
     <MESSAGE value="refactor: 소스 리팩토링" />
     <MESSAGE value="refactor: ORM Repository 인프라 레이어로 이동" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: ORM Repository 인프라 레이어로 이동" />
+    <MESSAGE value="refactor: 객체 연관관계 변경" />
+    <MESSAGE value="refactor: 로직 개선" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: 로직 개선" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

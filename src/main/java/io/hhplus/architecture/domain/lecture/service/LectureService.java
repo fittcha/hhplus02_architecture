@@ -4,6 +4,7 @@ import io.hhplus.architecture.controller.dto.AddLectureRequest;
 import io.hhplus.architecture.controller.dto.GetLectureResponse;
 import io.hhplus.architecture.controller.dto.RegisterResponse;
 import io.hhplus.architecture.domain.lecture.entity.Lecture;
+import io.hhplus.architecture.domain.lecture.entity.LectureRegistration;
 import io.hhplus.architecture.domain.lecture.repository.LectureRegistrationRepository;
 import io.hhplus.architecture.domain.lecture.repository.LectureRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -26,10 +27,8 @@ public class LectureService implements LectureInterface {
     public RegisterResponse register(Long lectureId, Long userId) {
         // 특강 정보 조회 (비관적 락 적용)
         Lecture lecture = lectureRepository.findByIdWithPessimisticLock(lectureId);
-
         // validation
         lectureValidator.validateRegister(lecture, userId);
-
         // 특강 신청
         lecture.addRegisterCnt();
         lectureRegistrationRepository.save(lecture, userId);
@@ -42,10 +41,8 @@ public class LectureService implements LectureInterface {
     public void cancel(Long lectureId, Long userId) {
         // 특강 정보 조회
         Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
-
         // validation
         lectureValidator.validateCancel(lecture.getLectureDatetime());
-
         // 신청 취소
         lectureRegistrationRepository.deleteByLectureAndUserId(lecture, userId);
         lecture.subRegisterCnt();
@@ -55,11 +52,9 @@ public class LectureService implements LectureInterface {
     public String check(Long lectureId, Long userId) {
         // 특강 정보 조회
         Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
-
         // 특강 신청 내역 존재 여부 리턴
-//        return lecture.getLectureRegistrationList().stream()
-//                .anyMatch(v -> v.getUserId().equals(userId)) ? "신청 완료" : "신청 내역이 없습니다.";
-        return null;
+        LectureRegistration lectureRegistration = lectureRegistrationRepository.findByLectureAndUserId(lecture, userId);
+        return lectureRegistration != null ? "신청 완료" : "신청 내역이 없습니다.";
     }
 
     @Override
@@ -73,7 +68,6 @@ public class LectureService implements LectureInterface {
     public Long add(AddLectureRequest request) {
         // validation
         lectureValidator.validateAdd(request.name());
-
         // 강의 등록
         Lecture lecture = lectureRepository.save(request.toEntity());
         if (lecture == null) {
@@ -87,10 +81,8 @@ public class LectureService implements LectureInterface {
     @Transactional
     public void delete(Long lectureId) {
         Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
-
         // validation
         lectureValidator.validateDelete(lectureId);
-
         // 강의 삭제
         lectureRegistrationRepository.deleteByLecture(lecture);
         lectureRepository.deleteById(lectureId);

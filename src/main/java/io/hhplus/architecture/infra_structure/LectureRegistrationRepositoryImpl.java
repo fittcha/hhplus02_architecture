@@ -38,4 +38,9 @@ public class LectureRegistrationRepositoryImpl implements LectureRegistrationRep
     public LectureRegistration findByLectureAndUserId(Lecture lecture, Long userId) {
         return jpaRepository.findByLectureAndUserId(lecture, userId);
     }
+
+    @Override
+    public LectureRegistration findFirstByLecture(Lecture lecture) {
+        return jpaRepository.findFirstByLecture(lecture);
+    }
 }

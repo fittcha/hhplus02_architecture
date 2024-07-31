@@ -42,9 +42,8 @@ public class LectureValidator {
     public void validateDelete(Long lectureId) {
         // 특강 날짜가 지나지 않았고 신청자가 존재하면 삭제 불가
         Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(EntityNotFoundException::new);
-        if (true) {
-//        if (!lecture.getLectureDatetime().isBefore(ZonedDateTime.now())
-//                && !lecture.getLectureRegistrationList().isEmpty()) {
+        LectureRegistration lectureRegistration = lectureRegistrationRepository.findFirstByLecture(lecture);
+        if (lectureRegistration != null) {
             throw new LectureCustomException(LectureExceptionEnum.DELETE_DISABLE);
         }
     }
